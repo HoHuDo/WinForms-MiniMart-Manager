@@ -42,9 +42,11 @@ namespace MiniMart_Manager.DanhMuc
             txtMatKhau = new TextBox();
             txtTaiKhoan = new TextBox();
             groupBox1 = new GroupBox();
+            picThoat = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picThoat).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -128,10 +130,11 @@ namespace MiniMart_Manager.DanhMuc
             btnDangNhap.Location = new Point(362, 359);
             btnDangNhap.Name = "btnDangNhap";
             btnDangNhap.Size = new Size(433, 48);
-            btnDangNhap.TabIndex = 9;
+            btnDangNhap.TabIndex = 2;
             btnDangNhap.Text = "Đăng nhập";
             btnDangNhap.UseVisualStyleBackColor = false;
             btnDangNhap.Click += btnDangNhap_Click;
+            btnDangNhap.KeyPress += btnDangNhap_KeyPress;
             // 
             // lblNhapLai
             // 
@@ -150,13 +153,13 @@ namespace MiniMart_Manager.DanhMuc
             lblThoat.AutoSize = true;
             lblThoat.BackColor = SystemColors.ButtonHighlight;
             lblThoat.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblThoat.ForeColor = Color.DeepSkyBlue;
-            lblThoat.Location = new Point(543, 428);
+            lblThoat.ForeColor = Color.FromArgb(255, 128, 128);
+            lblThoat.Location = new Point(726, 425);
             lblThoat.Name = "lblThoat";
             lblThoat.Size = new Size(67, 27);
             lblThoat.TabIndex = 10;
             lblThoat.Text = "&Thoát";
-            lblThoat.Click += lblThoat_Click;
+            lblThoat.Click += lblThoat_Click_1;
             // 
             // txtMatKhau
             // 
@@ -167,8 +170,9 @@ namespace MiniMart_Manager.DanhMuc
             txtMatKhau.Multiline = true;
             txtMatKhau.Name = "txtMatKhau";
             txtMatKhau.Size = new Size(371, 39);
-            txtMatKhau.TabIndex = 11;
-            txtMatKhau.TextChanged += txtMatKhau_TextChanged;
+            txtMatKhau.TabIndex = 1;
+            txtMatKhau.TextChanged += chkHienMK_CheckedChanged;
+            txtMatKhau.KeyPress += txtMatKhau_KeyPress;
             // 
             // txtTaiKhoan
             // 
@@ -179,7 +183,8 @@ namespace MiniMart_Manager.DanhMuc
             txtTaiKhoan.Multiline = true;
             txtTaiKhoan.Name = "txtTaiKhoan";
             txtTaiKhoan.Size = new Size(371, 39);
-            txtTaiKhoan.TabIndex = 11;
+            txtTaiKhoan.TabIndex = 0;
+            txtTaiKhoan.KeyPress += txtTaiKhoan_KeyPress;
             // 
             // groupBox1
             // 
@@ -189,6 +194,17 @@ namespace MiniMart_Manager.DanhMuc
             groupBox1.TabIndex = 12;
             groupBox1.TabStop = false;
             groupBox1.Text = "groupBox1";
+            // 
+            // picThoat
+            // 
+            picThoat.Image = Properties.Resources.logout;
+            picThoat.Location = new Point(702, 429);
+            picThoat.Name = "picThoat";
+            picThoat.Size = new Size(24, 24);
+            picThoat.SizeMode = PictureBoxSizeMode.AutoSize;
+            picThoat.TabIndex = 5;
+            picThoat.TabStop = false;
+            picThoat.Click += lblThoat_Click_1;
             // 
             // frmDangNhap
             // 
@@ -206,6 +222,7 @@ namespace MiniMart_Manager.DanhMuc
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(chkHienMK);
+            Controls.Add(picThoat);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(lblDangNhap);
@@ -215,9 +232,11 @@ namespace MiniMart_Manager.DanhMuc
             Name = "frmDangNhap";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
+            Load += frmDangNhap_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picThoat).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -236,5 +255,6 @@ namespace MiniMart_Manager.DanhMuc
         private TextBox txtMatKhau;
         private TextBox txtTaiKhoan;
         private GroupBox groupBox1;
+        private PictureBox picThoat;
     }
 }
