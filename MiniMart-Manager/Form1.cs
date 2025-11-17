@@ -6,5 +6,17 @@ namespace MiniMart_Manager
         {
             InitializeComponent();
         }
+
+        private void thoátToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void mnuDangNhap_Click(object sender, EventArgs e)
+        {
+            DanhMuc.frmDangNhap frm = new DanhMuc.frmDangNhap();
+            frm.ShowDialog();
+
+        }
     }
 }
