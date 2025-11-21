@@ -85,7 +85,7 @@
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(2, 2, 2, 2);
+            panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
             panel1.Size = new Size(1577, 110);
             panel1.TabIndex = 0;
@@ -142,7 +142,7 @@
             dgvPhieuNhap.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvPhieuNhap.Dock = DockStyle.Fill;
             dgvPhieuNhap.Location = new Point(0, 132);
-            dgvPhieuNhap.Margin = new Padding(2, 2, 2, 2);
+            dgvPhieuNhap.Margin = new Padding(2);
             dgvPhieuNhap.Name = "dgvPhieuNhap";
             dgvPhieuNhap.RowHeadersWidth = 62;
             dgvPhieuNhap.Size = new Size(660, 355);
@@ -156,7 +156,7 @@
             dgvChiTietPN.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvChiTietPN.Dock = DockStyle.Bottom;
             dgvChiTietPN.Location = new Point(0, 509);
-            dgvChiTietPN.Margin = new Padding(2, 2, 2, 2);
+            dgvChiTietPN.Margin = new Padding(2);
             dgvChiTietPN.Name = "dgvChiTietPN";
             dgvChiTietPN.RowHeadersWidth = 62;
             dgvChiTietPN.Size = new Size(660, 286);
@@ -195,9 +195,9 @@
             grbThongTin.Dock = DockStyle.Right;
             grbThongTin.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
             grbThongTin.Location = new Point(660, 110);
-            grbThongTin.Margin = new Padding(2, 2, 2, 2);
+            grbThongTin.Margin = new Padding(2);
             grbThongTin.Name = "grbThongTin";
-            grbThongTin.Padding = new Padding(2, 2, 2, 2);
+            grbThongTin.Padding = new Padding(2);
             grbThongTin.Size = new Size(917, 685);
             grbThongTin.TabIndex = 3;
             grbThongTin.TabStop = false;
@@ -207,7 +207,7 @@
             // 
             btnReset.Image = Properties.Resources.reset;
             btnReset.Location = new Point(693, 397);
-            btnReset.Margin = new Padding(2, 2, 2, 2);
+            btnReset.Margin = new Padding(2);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(47, 47);
             btnReset.TabIndex = 8;
@@ -218,7 +218,7 @@
             // 
             chkTimTheoNgay.AutoSize = true;
             chkTimTheoNgay.Location = new Point(390, 360);
-            chkTimTheoNgay.Margin = new Padding(2, 2, 2, 2);
+            chkTimTheoNgay.Margin = new Padding(2);
             chkTimTheoNgay.Name = "chkTimTheoNgay";
             chkTimTheoNgay.Size = new Size(60, 26);
             chkTimTheoNgay.TabIndex = 7;
@@ -229,7 +229,7 @@
             // 
             btnNhanVien.BackColor = Color.Snow;
             btnNhanVien.Location = new Point(181, 294);
-            btnNhanVien.Margin = new Padding(2, 2, 2, 2);
+            btnNhanVien.Margin = new Padding(2);
             btnNhanVien.Name = "btnNhanVien";
             btnNhanVien.Size = new Size(131, 29);
             btnNhanVien.TabIndex = 6;
@@ -241,7 +241,7 @@
             // 
             btnSanPham.BackColor = Color.Snow;
             btnSanPham.Location = new Point(663, 196);
-            btnSanPham.Margin = new Padding(2, 2, 2, 2);
+            btnSanPham.Margin = new Padding(2);
             btnSanPham.Name = "btnSanPham";
             btnSanPham.Size = new Size(129, 29);
             btnSanPham.TabIndex = 6;
@@ -253,7 +253,7 @@
             // 
             btnNCC.BackColor = Color.Snow;
             btnNCC.Location = new Point(181, 196);
-            btnNCC.Margin = new Padding(2, 2, 2, 2);
+            btnNCC.Margin = new Padding(2);
             btnNCC.Name = "btnNCC";
             btnNCC.Size = new Size(131, 29);
             btnNCC.TabIndex = 6;
@@ -266,7 +266,7 @@
             cbxMaNV.Enabled = false;
             cbxMaNV.FormattingEnabled = true;
             cbxMaNV.Location = new Point(181, 261);
-            cbxMaNV.Margin = new Padding(2, 2, 2, 2);
+            cbxMaNV.Margin = new Padding(2);
             cbxMaNV.Name = "cbxMaNV";
             cbxMaNV.Size = new Size(252, 30);
             cbxMaNV.TabIndex = 5;
@@ -275,7 +275,7 @@
             // 
             cbxMaNCC.FormattingEnabled = true;
             cbxMaNCC.Location = new Point(181, 163);
-            cbxMaNCC.Margin = new Padding(2, 2, 2, 2);
+            cbxMaNCC.Margin = new Padding(2);
             cbxMaNCC.Name = "cbxMaNCC";
             cbxMaNCC.Size = new Size(322, 30);
             cbxMaNCC.TabIndex = 5;
@@ -284,7 +284,7 @@
             // 
             cbxMaSP.FormattingEnabled = true;
             cbxMaSP.Location = new Point(663, 163);
-            cbxMaSP.Margin = new Padding(2, 2, 2, 2);
+            cbxMaSP.Margin = new Padding(2);
             cbxMaSP.Name = "cbxMaSP";
             cbxMaSP.Size = new Size(214, 30);
             cbxMaSP.TabIndex = 5;
@@ -294,7 +294,7 @@
             dtpNgayNhap.CustomFormat = " dd/MM/yyyy HH:mm:ss";
             dtpNgayNhap.Format = DateTimePickerFormat.Custom;
             dtpNgayNhap.Location = new Point(181, 360);
-            dtpNgayNhap.Margin = new Padding(2, 2, 2, 2);
+            dtpNgayNhap.Margin = new Padding(2);
             dtpNgayNhap.Name = "dtpNgayNhap";
             dtpNgayNhap.Size = new Size(205, 30);
             dtpNgayNhap.TabIndex = 2;
@@ -303,7 +303,7 @@
             // 
             txtTongTien.Enabled = false;
             txtTongTien.Location = new Point(181, 406);
-            txtTongTien.Margin = new Padding(2, 2, 2, 2);
+            txtTongTien.Margin = new Padding(2);
             txtTongTien.Name = "txtTongTien";
             txtTongTien.Size = new Size(205, 30);
             txtTongTien.TabIndex = 1;
@@ -312,7 +312,7 @@
             // 
             txtThanhTien.Enabled = false;
             txtThanhTien.Location = new Point(661, 353);
-            txtThanhTien.Margin = new Padding(2, 2, 2, 2);
+            txtThanhTien.Margin = new Padding(2);
             txtThanhTien.Name = "txtThanhTien";
             txtThanhTien.Size = new Size(172, 30);
             txtThanhTien.TabIndex = 1;
@@ -320,7 +320,7 @@
             // txtDonGia
             // 
             txtDonGia.Location = new Point(661, 307);
-            txtDonGia.Margin = new Padding(2, 2, 2, 2);
+            txtDonGia.Margin = new Padding(2);
             txtDonGia.Name = "txtDonGia";
             txtDonGia.Size = new Size(139, 30);
             txtDonGia.TabIndex = 1;
@@ -330,7 +330,7 @@
             // txtSL
             // 
             txtSL.Location = new Point(661, 256);
-            txtSL.Margin = new Padding(2, 2, 2, 2);
+            txtSL.Margin = new Padding(2);
             txtSL.Name = "txtSL";
             txtSL.Size = new Size(86, 30);
             txtSL.TabIndex = 1;
@@ -340,7 +340,7 @@
             // txtMaPN
             // 
             txtMaPN.Location = new Point(181, 64);
-            txtMaPN.Margin = new Padding(2, 2, 2, 2);
+            txtMaPN.Margin = new Padding(2);
             txtMaPN.Name = "txtMaPN";
             txtMaPN.Size = new Size(160, 30);
             txtMaPN.TabIndex = 1;
@@ -472,9 +472,9 @@
             grbChucNang.Dock = DockStyle.Bottom;
             grbChucNang.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
             grbChucNang.Location = new Point(2, 494);
-            grbChucNang.Margin = new Padding(2, 2, 2, 2);
+            grbChucNang.Margin = new Padding(2);
             grbChucNang.Name = "grbChucNang";
-            grbChucNang.Padding = new Padding(2, 2, 2, 2);
+            grbChucNang.Padding = new Padding(2);
             grbChucNang.Size = new Size(913, 189);
             grbChucNang.TabIndex = 4;
             grbChucNang.TabStop = false;
@@ -488,9 +488,9 @@
             btnThoat.Image = Properties.Resources.logout32px;
             btnThoat.ImageAlign = ContentAlignment.MiddleLeft;
             btnThoat.Location = new Point(691, 106);
-            btnThoat.Margin = new Padding(2, 2, 2, 2);
+            btnThoat.Margin = new Padding(2);
             btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(130, 55);
+            btnThoat.Size = new Size(152, 55);
             btnThoat.TabIndex = 0;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = false;
@@ -503,9 +503,9 @@
             btnXuat.Image = Properties.Resources.excel;
             btnXuat.ImageAlign = ContentAlignment.MiddleLeft;
             btnXuat.Location = new Point(485, 106);
-            btnXuat.Margin = new Padding(2, 2, 2, 2);
+            btnXuat.Margin = new Padding(2);
             btnXuat.Name = "btnXuat";
-            btnXuat.Size = new Size(130, 55);
+            btnXuat.Size = new Size(152, 55);
             btnXuat.TabIndex = 0;
             btnXuat.Text = "      Xuất Excel";
             btnXuat.UseVisualStyleBackColor = false;
@@ -517,9 +517,9 @@
             button1.Image = Properties.Resources.delete;
             button1.ImageAlign = ContentAlignment.MiddleLeft;
             button1.Location = new Point(279, 106);
-            button1.Margin = new Padding(2, 2, 2, 2);
+            button1.Margin = new Padding(2);
             button1.Name = "button1";
-            button1.Size = new Size(130, 55);
+            button1.Size = new Size(152, 55);
             button1.TabIndex = 0;
             button1.Text = "     Xóa CTPN";
             button1.UseVisualStyleBackColor = false;
@@ -531,9 +531,9 @@
             btnXoaPN.Image = Properties.Resources.delete;
             btnXoaPN.ImageAlign = ContentAlignment.MiddleLeft;
             btnXoaPN.Location = new Point(74, 106);
-            btnXoaPN.Margin = new Padding(2, 2, 2, 2);
+            btnXoaPN.Margin = new Padding(2);
             btnXoaPN.Name = "btnXoaPN";
-            btnXoaPN.Size = new Size(130, 55);
+            btnXoaPN.Size = new Size(152, 55);
             btnXoaPN.TabIndex = 0;
             btnXoaPN.Text = "Xóa PN";
             btnXoaPN.UseVisualStyleBackColor = false;
@@ -544,9 +544,9 @@
             Tìm.Image = Properties.Resources.loupe;
             Tìm.ImageAlign = ContentAlignment.MiddleLeft;
             Tìm.Location = new Point(691, 26);
-            Tìm.Margin = new Padding(2, 2, 2, 2);
+            Tìm.Margin = new Padding(2);
             Tìm.Name = "Tìm";
-            Tìm.Size = new Size(130, 55);
+            Tìm.Size = new Size(152, 55);
             Tìm.TabIndex = 0;
             Tìm.Text = "Tìm";
             Tìm.UseVisualStyleBackColor = true;
@@ -557,9 +557,9 @@
             btnSua.Image = Properties.Resources.save;
             btnSua.ImageAlign = ContentAlignment.MiddleLeft;
             btnSua.Location = new Point(485, 26);
-            btnSua.Margin = new Padding(2, 2, 2, 2);
+            btnSua.Margin = new Padding(2);
             btnSua.Name = "btnSua";
-            btnSua.Size = new Size(130, 55);
+            btnSua.Size = new Size(152, 55);
             btnSua.TabIndex = 0;
             btnSua.Text = "Lưu";
             btnSua.UseVisualStyleBackColor = true;
@@ -571,9 +571,9 @@
             btnThemCTPN.Image = Properties.Resources.more;
             btnThemCTPN.ImageAlign = ContentAlignment.MiddleLeft;
             btnThemCTPN.Location = new Point(279, 26);
-            btnThemCTPN.Margin = new Padding(2, 2, 2, 2);
+            btnThemCTPN.Margin = new Padding(2);
             btnThemCTPN.Name = "btnThemCTPN";
-            btnThemCTPN.Size = new Size(130, 55);
+            btnThemCTPN.Size = new Size(152, 55);
             btnThemCTPN.TabIndex = 0;
             btnThemCTPN.Text = "      Thêm CTPN";
             btnThemCTPN.UseVisualStyleBackColor = false;
@@ -585,9 +585,9 @@
             btnThemPN.Image = Properties.Resources.more;
             btnThemPN.ImageAlign = ContentAlignment.MiddleLeft;
             btnThemPN.Location = new Point(74, 26);
-            btnThemPN.Margin = new Padding(2, 2, 2, 2);
+            btnThemPN.Margin = new Padding(2);
             btnThemPN.Name = "btnThemPN";
-            btnThemPN.Size = new Size(130, 55);
+            btnThemPN.Size = new Size(152, 55);
             btnThemPN.TabIndex = 0;
             btnThemPN.Text = "   Thêm PN";
             btnThemPN.UseVisualStyleBackColor = false;
@@ -606,7 +606,7 @@
             Controls.Add(grbThongTin);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "frmQLNhapHang";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản Lý Nhập Hàng";

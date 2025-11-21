@@ -1,30 +1,20 @@
-﻿namespace MiniMart_Manager.DanhMuc
+﻿using MiniMart_Manager.Classes;
+using System.Data;
+
+namespace MiniMart_Manager.DanhMuc
 {
     public partial class frmBaoCao : Form
     {
+        ProcessDatabase dtBase = new ProcessDatabase();
+
         public frmBaoCao()
         {
             InitializeComponent();
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void frmBaoCao_Load(object sender, EventArgs e)
         {
-
+            DataTable dtLoiNhuan = dt
         }
+
     }
 }

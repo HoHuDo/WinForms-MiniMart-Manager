@@ -179,7 +179,7 @@ namespace MiniMart_Manager.DanhMuc
                     dtBase.UpdateData("Update PhieuNhap set TongTien =N'" + dtTongTien.Rows[0][0].ToString() + "' Where MaPhieuNhap=N'" + txtMaPN.Text + "';");
                     DataTable dtTongSL = dtBase.ReadData("Select SUM(SoLuongNhap) From ChiTietPhieuNhap Where MaSanPham='" + cbxMaSP.SelectedValue.ToString() + "'");
                     dtBase.UpdateData("Update SanPham Set SoLuongTon=N'" + dtTongSL.Rows[0][0].ToString() + "' Where MaSanPham=N'" + cbxMaSP.SelectedValue.ToString() + "';");
-                    dtBase.UpdateData("Update SanPham Set DonGiaNhap=N'" + txtDonGia.Text + "' Where MaSanPham=N'" + cbxMaSP.SelectedValue.ToString() + "'");
+                    dtBase.UpdateData("Update SanPham Set GiaNhap=N'" + txtDonGia.Text + "' Where MaSanPham=N'" + cbxMaSP.SelectedValue.ToString() + "'");
                     LoadChiTietPhieuNhap(txtMaPN.Text);
                     ResetValues();
                 }

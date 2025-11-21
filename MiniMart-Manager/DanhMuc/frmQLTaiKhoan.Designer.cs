@@ -62,9 +62,10 @@
             btnThoat.FlatStyle = FlatStyle.Flat;
             btnThoat.Image = Properties.Resources.logout32px;
             btnThoat.ImageAlign = ContentAlignment.MiddleLeft;
-            btnThoat.Location = new Point(75, 697);
+            btnThoat.Location = new Point(60, 558);
+            btnThoat.Margin = new Padding(2);
             btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(150, 62);
+            btnThoat.Size = new Size(133, 50);
             btnThoat.TabIndex = 0;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = false;
@@ -77,9 +78,10 @@
             btnXuat.FlatStyle = FlatStyle.Flat;
             btnXuat.Image = Properties.Resources.excel;
             btnXuat.ImageAlign = ContentAlignment.MiddleLeft;
-            btnXuat.Location = new Point(75, 544);
+            btnXuat.Location = new Point(60, 435);
+            btnXuat.Margin = new Padding(2);
             btnXuat.Name = "btnXuat";
-            btnXuat.Size = new Size(150, 62);
+            btnXuat.Size = new Size(133, 50);
             btnXuat.TabIndex = 0;
             btnXuat.Text = "       Xuất Excel";
             btnXuat.UseVisualStyleBackColor = false;
@@ -89,9 +91,10 @@
             // 
             btnSua.Image = Properties.Resources.refresh;
             btnSua.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSua.Location = new Point(75, 238);
+            btnSua.Location = new Point(60, 190);
+            btnSua.Margin = new Padding(2);
             btnSua.Name = "btnSua";
-            btnSua.Size = new Size(150, 62);
+            btnSua.Size = new Size(133, 50);
             btnSua.TabIndex = 0;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
@@ -101,9 +104,10 @@
             // 
             btnXoa.Image = Properties.Resources.delete;
             btnXoa.ImageAlign = ContentAlignment.MiddleLeft;
-            btnXoa.Location = new Point(75, 391);
+            btnXoa.Location = new Point(60, 313);
+            btnXoa.Margin = new Padding(2);
             btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(150, 62);
+            btnXoa.Size = new Size(133, 50);
             btnXoa.TabIndex = 0;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = true;
@@ -111,16 +115,18 @@
             // 
             // txtMK
             // 
-            txtMK.Location = new Point(189, 172);
+            txtMK.Location = new Point(151, 138);
+            txtMK.Margin = new Padding(2);
             txtMK.Name = "txtMK";
-            txtMK.Size = new Size(250, 34);
+            txtMK.Size = new Size(201, 30);
             txtMK.TabIndex = 1;
             // 
             // txtTenDN
             // 
-            txtTenDN.Location = new Point(189, 64);
+            txtTenDN.Location = new Point(151, 51);
+            txtTenDN.Margin = new Padding(2);
             txtTenDN.Name = "txtTenDN";
-            txtTenDN.Size = new Size(250, 34);
+            txtTenDN.Size = new Size(201, 30);
             txtTenDN.TabIndex = 1;
             // 
             // grbChucNang
@@ -133,9 +139,11 @@
             grbChucNang.Controls.Add(btnThem);
             grbChucNang.Dock = DockStyle.Right;
             grbChucNang.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
-            grbChucNang.Location = new Point(1156, 92);
+            grbChucNang.Location = new Point(925, 74);
+            grbChucNang.Margin = new Padding(2);
             grbChucNang.Name = "grbChucNang";
-            grbChucNang.Size = new Size(289, 843);
+            grbChucNang.Padding = new Padding(2);
+            grbChucNang.Size = new Size(231, 674);
             grbChucNang.TabIndex = 7;
             grbChucNang.TabStop = false;
             grbChucNang.Text = "Chức Năng";
@@ -144,9 +152,10 @@
             // 
             btnThem.Image = Properties.Resources.more;
             btnThem.ImageAlign = ContentAlignment.MiddleLeft;
-            btnThem.Location = new Point(75, 85);
+            btnThem.Location = new Point(60, 68);
+            btnThem.Margin = new Padding(2);
             btnThem.Name = "btnThem";
-            btnThem.Size = new Size(150, 62);
+            btnThem.Size = new Size(133, 50);
             btnThem.TabIndex = 0;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
@@ -155,18 +164,20 @@
             // lblQuyen
             // 
             lblQuyen.AutoSize = true;
-            lblQuyen.Location = new Point(623, 59);
+            lblQuyen.Location = new Point(498, 47);
+            lblQuyen.Margin = new Padding(2, 0, 2, 0);
             lblQuyen.Name = "lblQuyen";
-            lblQuyen.Size = new Size(71, 27);
+            lblQuyen.Size = new Size(61, 22);
             lblQuyen.TabIndex = 0;
             lblQuyen.Text = "Quyền";
             // 
             // lblTenDn
             // 
             lblTenDn.AutoSize = true;
-            lblTenDn.Location = new Point(27, 67);
+            lblTenDn.Location = new Point(22, 54);
+            lblTenDn.Margin = new Padding(2, 0, 2, 0);
             lblTenDn.Name = "lblTenDn";
-            lblTenDn.Size = new Size(148, 27);
+            lblTenDn.Size = new Size(127, 22);
             lblTenDn.TabIndex = 0;
             lblTenDn.Text = "Tên Đăng Nhập";
             // 
@@ -183,9 +194,11 @@
             grbThongTin.Controls.Add(lblTenDn);
             grbThongTin.Dock = DockStyle.Top;
             grbThongTin.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
-            grbThongTin.Location = new Point(0, 92);
+            grbThongTin.Location = new Point(0, 74);
+            grbThongTin.Margin = new Padding(2);
             grbThongTin.Name = "grbThongTin";
-            grbThongTin.Size = new Size(1156, 264);
+            grbThongTin.Padding = new Padding(2);
+            grbThongTin.Size = new Size(925, 211);
             grbThongTin.TabIndex = 6;
             grbThongTin.TabStop = false;
             grbThongTin.Text = "Thông Tin";
@@ -194,34 +207,38 @@
             // 
             cbxQuyen.FormattingEnabled = true;
             cbxQuyen.Items.AddRange(new object[] { "Admin", "Staff" });
-            cbxQuyen.Location = new Point(782, 59);
+            cbxQuyen.Location = new Point(626, 47);
+            cbxQuyen.Margin = new Padding(2);
             cbxQuyen.Name = "cbxQuyen";
-            cbxQuyen.Size = new Size(148, 35);
+            cbxQuyen.Size = new Size(123, 30);
             cbxQuyen.TabIndex = 2;
             // 
             // txtMaNV
             // 
-            txtMaNV.Location = new Point(782, 177);
+            txtMaNV.Location = new Point(626, 138);
+            txtMaNV.Margin = new Padding(2);
             txtMaNV.Multiline = true;
             txtMaNV.Name = "txtMaNV";
-            txtMaNV.Size = new Size(148, 27);
+            txtMaNV.Size = new Size(189, 30);
             txtMaNV.TabIndex = 1;
             // 
             // lblMaNV
             // 
             lblMaNV.AutoSize = true;
-            lblMaNV.Location = new Point(623, 175);
+            lblMaNV.Location = new Point(498, 140);
+            lblMaNV.Margin = new Padding(2, 0, 2, 0);
             lblMaNV.Name = "lblMaNV";
-            lblMaNV.Size = new Size(137, 27);
+            lblMaNV.Size = new Size(119, 22);
             lblMaNV.TabIndex = 0;
             lblMaNV.Text = "Mã Nhân Viên";
             // 
             // lblMatKhau
             // 
             lblMatKhau.AutoSize = true;
-            lblMatKhau.Location = new Point(26, 172);
+            lblMatKhau.Location = new Point(21, 138);
+            lblMatKhau.Margin = new Padding(2, 0, 2, 0);
             lblMatKhau.Name = "lblMatKhau";
-            lblMatKhau.Size = new Size(97, 27);
+            lblMatKhau.Size = new Size(84, 22);
             lblMatKhau.TabIndex = 0;
             lblMatKhau.Text = "Mật Khẩu";
             // 
@@ -229,9 +246,10 @@
             // 
             lblTenTK.AutoSize = true;
             lblTenTK.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
-            lblTenTK.Location = new Point(808, 35);
+            lblTenTK.Location = new Point(646, 28);
+            lblTenTK.Margin = new Padding(2, 0, 2, 0);
             lblTenTK.Name = "lblTenTK";
-            lblTenTK.Size = new Size(113, 27);
+            lblTenTK.Size = new Size(96, 22);
             lblTenTK.TabIndex = 0;
             lblTenTK.Text = "User Name";
             // 
@@ -239,9 +257,10 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Variable Text", 20F, FontStyle.Bold);
-            label1.Location = new Point(26, 9);
+            label1.Location = new Point(21, 7);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(368, 53);
+            label1.Size = new Size(312, 46);
             label1.TabIndex = 0;
             label1.Text = "Quản Lý Tài Khoản";
             // 
@@ -252,8 +271,9 @@
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1445, 92);
+            panel1.Size = new Size(1156, 74);
             panel1.TabIndex = 4;
             // 
             // dgvTaiKhoan
@@ -262,24 +282,26 @@
             dgvTaiKhoan.BackgroundColor = SystemColors.Control;
             dgvTaiKhoan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvTaiKhoan.Dock = DockStyle.Fill;
-            dgvTaiKhoan.Location = new Point(0, 356);
+            dgvTaiKhoan.Location = new Point(0, 285);
+            dgvTaiKhoan.Margin = new Padding(2);
             dgvTaiKhoan.Name = "dgvTaiKhoan";
             dgvTaiKhoan.RowHeadersWidth = 62;
-            dgvTaiKhoan.Size = new Size(1156, 579);
+            dgvTaiKhoan.Size = new Size(925, 463);
             dgvTaiKhoan.TabIndex = 5;
             dgvTaiKhoan.CellClick += dgvTaiKhoan_CellClick;
             dgvTaiKhoan.CellContentClick += dgvLoaiHang_CellContentClick;
             // 
             // frmQLTaiKhoan
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1445, 935);
+            ClientSize = new Size(1156, 748);
             Controls.Add(dgvTaiKhoan);
             Controls.Add(grbThongTin);
             Controls.Add(grbChucNang);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(2);
             Name = "frmQLTaiKhoan";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản Lý Tài Khoản";

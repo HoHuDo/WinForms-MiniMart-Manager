@@ -1,4 +1,6 @@
-﻿namespace MiniMart_Manager.DanhMuc
+﻿using MiniMart_Manager.Classes;
+
+namespace MiniMart_Manager.DanhMuc
 {
     public partial class frmThongTin : Form
     {
@@ -15,6 +17,12 @@
         private void label18_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmThongTin_Load(object sender, EventArgs e)
+        {
+            lblMota.Text = GlobalData.MoTa;
+            lblPhienBan.Text = GlobalData.PhienBan;
         }
     }
 }

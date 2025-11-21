@@ -17,13 +17,14 @@ namespace MiniMart_Manager.DanhMuc
             txtMoTa.Text = GlobalData.MoTa;
 
             txtDataSource.Text = GlobalData.DataSource;
-            txtDataName.Text = "MarketManager";
+            txtDataName.Text = GlobalData.DataName;
 
             if (GlobalData.Authetication == "Windows Authentication")
                 cbxAuth.SelectedIndex = 1;
             else
                 cbxAuth.SelectedIndex = 0;
 
+            txtPass.PasswordChar = '*';
             txtID.Text = GlobalData.User;
             txtPass.Text = GlobalData.Password;
             chkTrust.Checked = GlobalData.Trust;
@@ -75,5 +76,6 @@ namespace MiniMart_Manager.DanhMuc
         {
             this.Close();
         }
+
     }
 }

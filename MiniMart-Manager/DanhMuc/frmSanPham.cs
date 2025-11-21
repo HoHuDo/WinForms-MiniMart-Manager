@@ -81,29 +81,13 @@ namespace MiniMart_Manager.DanhMuc
             txtSL.Text = dgvSanPham.CurrentRow.Cells[5].Value.ToString();
             txtGiaNhap.Text = dgvSanPham.CurrentRow.Cells[6].Value.ToString();
 
-            try
-            {
-                var cellValue = dgvSanPham.CurrentRow.Cells[7].Value;
-                string fileName = cellValue != null ? cellValue.ToString().Trim() : "";
+            var cellValue = dgvSanPham.CurrentRow.Cells[7].Value;
+            string imagePathh = cellValue != null ? cellValue.ToString().Trim() : "";
 
-                string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                string fullPath = Path.Combine(appDirectory, "Images", fileName);
+            string folderPath = Path.Combine(Application.StartupPath, "Images");
+            string fullPath = Path.Combine(folderPath, imagePathh);
+            picAnh.ImageLocation = fullPath;
 
-                if (!string.IsNullOrEmpty(fileName) && File.Exists(fullPath))
-                {
-                    if (picAnh.Image != null) picAnh.Image.Dispose();
-                    picAnh.Image = Image.FromFile(fullPath);
-                    picAnh.SizeMode = PictureBoxSizeMode.Zoom;
-                }
-                else
-                {
-                    if (picAnh.Image != null) picAnh.Image = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tải ảnh: " + ex.Message);
-            }
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -241,7 +225,7 @@ namespace MiniMart_Manager.DanhMuc
                     + "', Anh=N'"
                     + System.IO.Path.GetFileName(picAnh.ImageLocation)
                 + "' Where MaSanPham=N'" + dgvSanPham.CurrentRow.Cells[0].Value.ToString() + "'");
-                dtBase.UpdateData("Upadate ChiTietDonNhap Set DonGiaNhap='" + txtGiaNhap.Text + "' Where MaSanPham=N'" + txtMaSP.Text + "'");
+                dtBase.UpdateData("Update ChiTietPhieuNhap Set DonGiaNhap='" + txtGiaNhap.Text + "' Where MaSanPham=N'" + txtMaSP.Text + "'");
                 MessageBox.Show("Sửa sản phẩm thành công!");
                 frmSanPham_Load(sender, e);
                 ResetValues();
@@ -371,6 +355,11 @@ namespace MiniMart_Manager.DanhMuc
             {
                 e.Handled = true;
             }
+        }
+
+        private void dgvSanPham_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

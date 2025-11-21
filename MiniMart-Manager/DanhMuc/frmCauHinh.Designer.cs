@@ -68,24 +68,24 @@
             // 
             // panel1
             // 
-            panel1.BackColor = SystemColors.ButtonFace;
+            panel1.BackColor = Color.Snow;
             panel1.Controls.Add(btnLuu);
             panel1.Controls.Add(groupBox1);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1107, 695);
+            panel1.Size = new Size(1107, 585);
             panel1.TabIndex = 0;
             // 
             // btnLuu
             // 
             btnLuu.Image = Properties.Resources.save;
             btnLuu.ImageAlign = ContentAlignment.MiddleLeft;
-            btnLuu.Location = new Point(212, 536);
+            btnLuu.Location = new Point(481, 518);
             btnLuu.Margin = new Padding(2);
             btnLuu.Name = "btnLuu";
-            btnLuu.Size = new Size(90, 47);
+            btnLuu.Size = new Size(106, 47);
             btnLuu.TabIndex = 1;
             btnLuu.Text = "      Lưu";
             btnLuu.UseVisualStyleBackColor = true;
@@ -105,7 +105,7 @@
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label1);
-            groupBox1.Location = new Point(57, 50);
+            groupBox1.Location = new Point(30, 32);
             groupBox1.Margin = new Padding(2);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(2);
@@ -226,7 +226,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = SystemColors.ButtonHighlight;
+            panel2.BackColor = SystemColors.MenuBar;
             panel2.Controls.Add(btnThoat);
             panel2.Controls.Add(btnLuuCnn);
             panel2.Controls.Add(button1);
@@ -235,7 +235,7 @@
             panel2.Location = new Point(656, 0);
             panel2.Margin = new Padding(2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(451, 695);
+            panel2.Size = new Size(451, 585);
             panel2.TabIndex = 1;
             // 
             // btnThoat
@@ -243,7 +243,7 @@
             btnThoat.BackColor = Color.FromArgb(255, 192, 192);
             btnThoat.Image = Properties.Resources.logout32px;
             btnThoat.ImageAlign = ContentAlignment.MiddleLeft;
-            btnThoat.Location = new Point(328, 536);
+            btnThoat.Location = new Point(329, 518);
             btnThoat.Margin = new Padding(2);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(90, 47);
@@ -256,7 +256,7 @@
             // 
             btnLuuCnn.Image = Properties.Resources.save;
             btnLuuCnn.ImageAlign = ContentAlignment.MiddleLeft;
-            btnLuuCnn.Location = new Point(233, 536);
+            btnLuuCnn.Location = new Point(234, 518);
             btnLuuCnn.Margin = new Padding(2);
             btnLuuCnn.Name = "btnLuuCnn";
             btnLuuCnn.Size = new Size(91, 47);
@@ -268,7 +268,7 @@
             // 
             button1.Image = Properties.Resources.loupe;
             button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(39, 536);
+            button1.Location = new Point(40, 518);
             button1.Margin = new Padding(2);
             button1.Name = "button1";
             button1.Size = new Size(157, 47);
@@ -289,7 +289,7 @@
             groupBox2.Controls.Add(label10);
             groupBox2.Controls.Add(label8);
             groupBox2.Controls.Add(label7);
-            groupBox2.Location = new Point(39, 50);
+            groupBox2.Location = new Point(40, 32);
             groupBox2.Margin = new Padding(2);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(2);
@@ -407,7 +407,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(1107, 695);
+            ClientSize = new Size(1107, 585);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -415,6 +415,7 @@
             Name = "frmCauHinh";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cấu Hình";
+            Load += frmCauHinh_Load;
             panel1.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

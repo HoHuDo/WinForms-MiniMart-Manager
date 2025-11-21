@@ -18,6 +18,9 @@ namespace MiniMart_Manager.DanhMuc
 
         private void frmDoiMatKhau_Load(object sender, EventArgs e)
         {
+            txtMK.PasswordChar = '*';
+            txtMKMoi.PasswordChar = '*';
+            txtXacNhan.PasswordChar = '*';
 
         }
 
@@ -70,6 +73,27 @@ namespace MiniMart_Manager.DanhMuc
                 txtMK.Clear();
                 txtTK.Focus();
                 return;
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkPass_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkPass.Checked)
+            {
+                txtMK.PasswordChar = '\0';
+                txtMKMoi.PasswordChar = '\0';
+                txtXacNhan.PasswordChar = '\0';
+            }
+            else
+            {
+                txtMK.PasswordChar = '*';
+                txtMKMoi.PasswordChar = '*';
+                txtXacNhan.PasswordChar = '*';
             }
         }
     }

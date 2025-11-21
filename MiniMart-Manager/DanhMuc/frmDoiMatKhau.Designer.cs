@@ -46,10 +46,9 @@
             label4 = new Label();
             button1 = new Button();
             pictureBox1 = new PictureBox();
-            picThoat = new PictureBox();
             lblThoat = new Label();
+            chkPass = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picThoat).BeginInit();
             SuspendLayout();
             // 
             // lblTenTK
@@ -134,7 +133,7 @@
             txtTK.ForeColor = SystemColors.HotTrack;
             txtTK.Location = new Point(286, 221);
             txtTK.Name = "txtTK";
-            txtTK.Size = new Size(398, 23);
+            txtTK.Size = new Size(355, 23);
             txtTK.TabIndex = 0;
             // 
             // txtMK
@@ -144,7 +143,7 @@
             txtMK.ForeColor = Color.FromArgb(255, 128, 128);
             txtMK.Location = new Point(286, 290);
             txtMK.Name = "txtMK";
-            txtMK.Size = new Size(398, 23);
+            txtMK.Size = new Size(355, 23);
             txtMK.TabIndex = 1;
             // 
             // txtMKMoi
@@ -154,7 +153,7 @@
             txtMKMoi.ForeColor = Color.FromArgb(0, 192, 0);
             txtMKMoi.Location = new Point(286, 361);
             txtMKMoi.Name = "txtMKMoi";
-            txtMKMoi.Size = new Size(398, 23);
+            txtMKMoi.Size = new Size(355, 23);
             txtMKMoi.TabIndex = 2;
             // 
             // txtXacNhan
@@ -164,7 +163,7 @@
             txtXacNhan.ForeColor = Color.FromArgb(0, 192, 0);
             txtXacNhan.Location = new Point(286, 429);
             txtXacNhan.Name = "txtXacNhan";
-            txtXacNhan.Size = new Size(398, 23);
+            txtXacNhan.Size = new Size(355, 23);
             txtXacNhan.TabIndex = 3;
             // 
             // label1
@@ -230,26 +229,30 @@
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
             // 
-            // picThoat
-            // 
-            picThoat.Image = Properties.Resources.logout;
-            picThoat.Location = new Point(580, 604);
-            picThoat.Name = "picThoat";
-            picThoat.Size = new Size(28, 27);
-            picThoat.TabIndex = 5;
-            picThoat.TabStop = false;
-            picThoat.Click += lblThoat_Click_2;
-            // 
             // lblThoat
             // 
             lblThoat.AutoSize = true;
             lblThoat.ForeColor = Color.LightCoral;
-            lblThoat.Location = new Point(608, 601);
+            lblThoat.Image = Properties.Resources.logout;
+            lblThoat.ImageAlign = ContentAlignment.MiddleLeft;
+            lblThoat.Location = new Point(603, 593);
             lblThoat.Name = "lblThoat";
-            lblThoat.Size = new Size(53, 22);
+            lblThoat.Size = new Size(81, 22);
             lblThoat.TabIndex = 5;
-            lblThoat.Text = "Thoát";
+            lblThoat.Text = "       Thoát";
             lblThoat.Click += lblThoat_Click_2;
+            // 
+            // chkPass
+            // 
+            chkPass.AutoSize = true;
+            chkPass.Location = new Point(74, 475);
+            chkPass.Name = "chkPass";
+            chkPass.RightToLeft = RightToLeft.Yes;
+            chkPass.Size = new Size(144, 26);
+            chkPass.TabIndex = 6;
+            chkPass.Text = "HIện mật khẩu";
+            chkPass.UseVisualStyleBackColor = true;
+            chkPass.CheckedChanged += chkPass_CheckedChanged;
             // 
             // frmDoiMatKhau
             // 
@@ -258,8 +261,8 @@
             BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(746, 673);
             ControlBox = false;
+            Controls.Add(chkPass);
             Controls.Add(lblThoat);
-            Controls.Add(picThoat);
             Controls.Add(pictureBox1);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -283,7 +286,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Load += frmDoiMatKhau_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picThoat).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -308,7 +310,7 @@
         private Label label4;
         private Button button1;
         private PictureBox pictureBox1;
-        private PictureBox picThoat;
         private Label lblThoat;
+        private CheckBox chkPass;
     }
 }
