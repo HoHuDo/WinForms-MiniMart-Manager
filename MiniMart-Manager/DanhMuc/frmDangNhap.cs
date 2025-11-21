@@ -92,10 +92,11 @@ namespace MiniMart_Manager.DanhMuc
             else
             {
                 MessageBox.Show("Tên Đăng Nhập hoặc mật khẩu không đúng vui lòng nhập lại");
-                txtTaiKhoan.Clear();
                 txtMatKhau.Clear();
                 txtTaiKhoan.Focus();
             }
+
+
 
         }
 

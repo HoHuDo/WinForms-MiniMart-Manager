@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQuanLy));
             menuStrip1 = new MenuStrip();
             mnuGiaoDich = new ToolStripMenuItem();
             mnuBanHang = new ToolStripMenuItem();
             mnuQLHoaDon = new ToolStripMenuItem();
             mnuQLNhapHang = new ToolStripMenuItem();
-            giaoDịchToolStripMenuItem1 = new ToolStripMenuItem();
             mnuQLDanhMuc = new ToolStripMenuItem();
             mnuQLSanPham = new ToolStripMenuItem();
             mnuQLLoaiHang = new ToolStripMenuItem();
@@ -42,22 +42,27 @@
             mnuQLTaiKhoan = new ToolStripMenuItem();
             mnuQLNhanVien = new ToolStripMenuItem();
             mnuQLKhachHang = new ToolStripMenuItem();
+            mnuBaoCao = new ToolStripMenuItem();
             mnuHeThong = new ToolStripMenuItem();
             mnuDangXuat = new ToolStripMenuItem();
             mnuDoiMK = new ToolStripMenuItem();
             mnuCauHinh = new ToolStripMenuItem();
+            mnuGiaoDien = new ToolStripMenuItem();
+            tímToolStripMenuItem = new ToolStripMenuItem();
+            xanhToolStripMenuItem = new ToolStripMenuItem();
+            đỏToolStripMenuItem = new ToolStripMenuItem();
             mnuTroGiup = new ToolStripMenuItem();
-            label2 = new Label();
+            mnuThoat = new ToolStripMenuItem();
+            lblQuyen = new Label();
             lblTenTK = new Label();
             pictureBox1 = new PictureBox();
-            panel1 = new Panel();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            panel2 = new Panel();
+            pnlLeft = new Panel();
+            pnlQuyen = new Panel();
             giaoDịchToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel1.SuspendLayout();
-            panel2.SuspendLayout();
+            pnlLeft.SuspendLayout();
+            pnlQuyen.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -65,16 +70,16 @@
             menuStrip1.BackColor = Color.FromArgb(0, 0, 64);
             menuStrip1.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             menuStrip1.ImageScalingSize = new Size(24, 24);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { mnuGiaoDich, mnuQLDanhMuc, mnuQuanTri, mnuHeThong, mnuTroGiup });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { mnuGiaoDich, mnuQLDanhMuc, mnuQuanTri, mnuBaoCao, mnuHeThong, mnuGiaoDien, mnuTroGiup, mnuThoat });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1430, 35);
+            menuStrip1.Size = new Size(1571, 35);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
             // mnuGiaoDich
             // 
-            mnuGiaoDich.DropDownItems.AddRange(new ToolStripItem[] { mnuBanHang, mnuQLHoaDon, mnuQLNhapHang, giaoDịchToolStripMenuItem1 });
+            mnuGiaoDich.DropDownItems.AddRange(new ToolStripItem[] { mnuBanHang, mnuQLHoaDon, mnuQLNhapHang });
             mnuGiaoDich.ForeColor = SystemColors.GradientInactiveCaption;
             mnuGiaoDich.Name = "mnuGiaoDich";
             mnuGiaoDich.Size = new Size(121, 31);
@@ -86,7 +91,8 @@
             mnuBanHang.BackColor = Color.FromArgb(0, 0, 64);
             mnuBanHang.ForeColor = SystemColors.ButtonHighlight;
             mnuBanHang.Name = "mnuBanHang";
-            mnuBanHang.Size = new Size(298, 36);
+            mnuBanHang.ShortcutKeys = Keys.Control | Keys.F1;
+            mnuBanHang.Size = new Size(383, 36);
             mnuBanHang.Text = "Bán Hàng";
             mnuBanHang.Click += mnuBanHang_Click;
             // 
@@ -94,7 +100,8 @@
             // 
             mnuQLHoaDon.BackColor = Color.MintCream;
             mnuQLHoaDon.Name = "mnuQLHoaDon";
-            mnuQLHoaDon.Size = new Size(298, 36);
+            mnuQLHoaDon.ShortcutKeys = Keys.Control | Keys.F2;
+            mnuQLHoaDon.Size = new Size(383, 36);
             mnuQLHoaDon.Text = "Quản lý hóa đơn";
             mnuQLHoaDon.Click += mnuQLHoaDon_Click;
             // 
@@ -103,15 +110,10 @@
             mnuQLNhapHang.BackColor = Color.FromArgb(0, 0, 64);
             mnuQLNhapHang.ForeColor = SystemColors.ButtonHighlight;
             mnuQLNhapHang.Name = "mnuQLNhapHang";
-            mnuQLNhapHang.Size = new Size(298, 36);
+            mnuQLNhapHang.ShortcutKeys = Keys.Control | Keys.F3;
+            mnuQLNhapHang.Size = new Size(383, 36);
             mnuQLNhapHang.Text = "Quản lý nhập hàng";
             mnuQLNhapHang.Click += mnuQLNhapHang_Click;
-            // 
-            // giaoDịchToolStripMenuItem1
-            // 
-            giaoDịchToolStripMenuItem1.Name = "giaoDịchToolStripMenuItem1";
-            giaoDịchToolStripMenuItem1.Size = new Size(298, 36);
-            giaoDịchToolStripMenuItem1.Text = "Giao Dịch";
             // 
             // mnuQLDanhMuc
             // 
@@ -126,7 +128,8 @@
             mnuQLSanPham.BackColor = Color.FromArgb(0, 0, 64);
             mnuQLSanPham.ForeColor = SystemColors.ButtonHighlight;
             mnuQLSanPham.Name = "mnuQLSanPham";
-            mnuQLSanPham.Size = new Size(324, 36);
+            mnuQLSanPham.ShortcutKeys = Keys.Control | Keys.D1;
+            mnuQLSanPham.Size = new Size(398, 36);
             mnuQLSanPham.Text = "Quản lý sản phẩm";
             mnuQLSanPham.Click += mnuQLSanPham_Click;
             // 
@@ -134,7 +137,8 @@
             // 
             mnuQLLoaiHang.BackColor = Color.MintCream;
             mnuQLLoaiHang.Name = "mnuQLLoaiHang";
-            mnuQLLoaiHang.Size = new Size(324, 36);
+            mnuQLLoaiHang.ShortcutKeys = Keys.Control | Keys.D2;
+            mnuQLLoaiHang.Size = new Size(398, 36);
             mnuQLLoaiHang.Text = "Quản lý loại hàng";
             mnuQLLoaiHang.Click += mnuQLLoaiHang_Click;
             // 
@@ -143,7 +147,8 @@
             mnuQLNhaCungCap.BackColor = Color.FromArgb(0, 0, 64);
             mnuQLNhaCungCap.ForeColor = SystemColors.ButtonHighlight;
             mnuQLNhaCungCap.Name = "mnuQLNhaCungCap";
-            mnuQLNhaCungCap.Size = new Size(324, 36);
+            mnuQLNhaCungCap.ShortcutKeys = Keys.Control | Keys.D3;
+            mnuQLNhaCungCap.Size = new Size(398, 36);
             mnuQLNhaCungCap.Text = "Quản lý nhà cung cấp";
             mnuQLNhaCungCap.Click += mnuQLNhaCungCap_Click;
             // 
@@ -160,23 +165,38 @@
             mnuQLTaiKhoan.BackColor = Color.FromArgb(0, 0, 64);
             mnuQLTaiKhoan.ForeColor = SystemColors.ButtonHighlight;
             mnuQLTaiKhoan.Name = "mnuQLTaiKhoan";
-            mnuQLTaiKhoan.Size = new Size(305, 36);
+            mnuQLTaiKhoan.ShortcutKeys = Keys.Control | Keys.T;
+            mnuQLTaiKhoan.Size = new Size(426, 36);
             mnuQLTaiKhoan.Text = "Quản lý tài khoản";
+            mnuQLTaiKhoan.Click += mnuQLTaiKhoan_Click;
             // 
             // mnuQLNhanVien
             // 
             mnuQLNhanVien.BackColor = Color.MintCream;
             mnuQLNhanVien.Name = "mnuQLNhanVien";
-            mnuQLNhanVien.Size = new Size(305, 36);
+            mnuQLNhanVien.ShortcutKeys = Keys.Control | Keys.Shift | Keys.N;
+            mnuQLNhanVien.Size = new Size(426, 36);
             mnuQLNhanVien.Text = "Quản lý nhân viên";
+            mnuQLNhanVien.Click += mnuQLNhanVien_Click;
             // 
             // mnuQLKhachHang
             // 
             mnuQLKhachHang.BackColor = Color.FromArgb(0, 0, 64);
             mnuQLKhachHang.ForeColor = SystemColors.ButtonHighlight;
             mnuQLKhachHang.Name = "mnuQLKhachHang";
-            mnuQLKhachHang.Size = new Size(305, 36);
+            mnuQLKhachHang.ShortcutKeys = Keys.Control | Keys.K;
+            mnuQLKhachHang.Size = new Size(426, 36);
             mnuQLKhachHang.Text = "Quản lý khách hàng";
+            mnuQLKhachHang.Click += mnuQLKhachHang_Click;
+            // 
+            // mnuBaoCao
+            // 
+            mnuBaoCao.ForeColor = SystemColors.GradientInactiveCaption;
+            mnuBaoCao.Name = "mnuBaoCao";
+            mnuBaoCao.ShortcutKeys = Keys.Control | Keys.R;
+            mnuBaoCao.Size = new Size(107, 31);
+            mnuBaoCao.Text = "Báo Cáo";
+            mnuBaoCao.Click += mnuBaoCao_Click;
             // 
             // mnuHeThong
             // 
@@ -191,7 +211,8 @@
             mnuDangXuat.BackColor = Color.FromArgb(0, 0, 64);
             mnuDangXuat.ForeColor = SystemColors.ButtonHighlight;
             mnuDangXuat.Name = "mnuDangXuat";
-            mnuDangXuat.Size = new Size(244, 36);
+            mnuDangXuat.ShortcutKeys = Keys.Control | Keys.Shift | Keys.D;
+            mnuDangXuat.Size = new Size(385, 36);
             mnuDangXuat.Text = "Đăng xuất";
             mnuDangXuat.Click += đăngXuấtToolStripMenuItem1_Click;
             // 
@@ -199,7 +220,8 @@
             // 
             mnuDoiMK.BackColor = Color.MintCream;
             mnuDoiMK.Name = "mnuDoiMK";
-            mnuDoiMK.Size = new Size(244, 36);
+            mnuDoiMK.ShortcutKeys = Keys.Control | Keys.Shift | Keys.M;
+            mnuDoiMK.Size = new Size(385, 36);
             mnuDoiMK.Text = "Đổi mật khẩu";
             mnuDoiMK.Click += mnuDoiMK_Click;
             // 
@@ -208,29 +230,76 @@
             mnuCauHinh.BackColor = Color.FromArgb(0, 0, 64);
             mnuCauHinh.ForeColor = SystemColors.ButtonHighlight;
             mnuCauHinh.Name = "mnuCauHinh";
-            mnuCauHinh.Size = new Size(244, 36);
+            mnuCauHinh.ShortcutKeys = Keys.Control | Keys.Shift | Keys.C;
+            mnuCauHinh.Size = new Size(385, 36);
             mnuCauHinh.Text = "Cấu hình";
+            mnuCauHinh.Click += mnuCauHinh_Click;
+            // 
+            // mnuGiaoDien
+            // 
+            mnuGiaoDien.DropDownItems.AddRange(new ToolStripItem[] { tímToolStripMenuItem, xanhToolStripMenuItem, đỏToolStripMenuItem });
+            mnuGiaoDien.ForeColor = SystemColors.GradientInactiveCaption;
+            mnuGiaoDien.Name = "mnuGiaoDien";
+            mnuGiaoDien.Size = new Size(124, 31);
+            mnuGiaoDien.Text = "Giao Diện";
+            mnuGiaoDien.Click += mnuGiaoDien_Click;
+            // 
+            // tímToolStripMenuItem
+            // 
+            tímToolStripMenuItem.BackColor = Color.FromArgb(0, 0, 64);
+            tímToolStripMenuItem.ForeColor = Color.MintCream;
+            tímToolStripMenuItem.Name = "tímToolStripMenuItem";
+            tímToolStripMenuItem.Size = new Size(270, 36);
+            tímToolStripMenuItem.Text = "Tím";
+            tímToolStripMenuItem.Click += tímToolStripMenuItem_Click;
+            // 
+            // xanhToolStripMenuItem
+            // 
+            xanhToolStripMenuItem.BackColor = Color.SeaGreen;
+            xanhToolStripMenuItem.ForeColor = Color.Cornsilk;
+            xanhToolStripMenuItem.Name = "xanhToolStripMenuItem";
+            xanhToolStripMenuItem.Size = new Size(270, 36);
+            xanhToolStripMenuItem.Text = "Xanh";
+            xanhToolStripMenuItem.Click += xanhToolStripMenuItem_Click;
+            // 
+            // đỏToolStripMenuItem
+            // 
+            đỏToolStripMenuItem.BackColor = Color.DarkRed;
+            đỏToolStripMenuItem.ForeColor = Color.Snow;
+            đỏToolStripMenuItem.Name = "đỏToolStripMenuItem";
+            đỏToolStripMenuItem.Size = new Size(270, 36);
+            đỏToolStripMenuItem.Text = "Đỏ";
+            đỏToolStripMenuItem.Click += đỏToolStripMenuItem_Click;
             // 
             // mnuTroGiup
             // 
             mnuTroGiup.ForeColor = SystemColors.GradientInactiveCaption;
             mnuTroGiup.Name = "mnuTroGiup";
+            mnuTroGiup.ShortcutKeys = Keys.Control | Keys.H;
             mnuTroGiup.Size = new Size(111, 31);
             mnuTroGiup.Text = "Trợ Giúp";
             mnuTroGiup.Click += mnuTroGiup_Click;
             // 
-            // label2
+            // mnuThoat
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.FromArgb(0, 0, 64);
-            label2.Font = new Font("Segoe UI Emoji", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.MintCream;
-            label2.Location = new Point(82, 40);
-            label2.Name = "label2";
-            label2.Size = new Size(189, 64);
-            label2.TabIndex = 2;
-            label2.Text = "ADMIN";
-            label2.Click += label2_Click;
+            mnuThoat.ForeColor = SystemColors.GradientInactiveCaption;
+            mnuThoat.Name = "mnuThoat";
+            mnuThoat.Size = new Size(83, 31);
+            mnuThoat.Text = "Thoát";
+            mnuThoat.Click += mnuThoat_Click;
+            // 
+            // lblQuyen
+            // 
+            lblQuyen.AutoSize = true;
+            lblQuyen.BackColor = Color.FromArgb(0, 0, 64);
+            lblQuyen.Font = new Font("Segoe UI Emoji", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblQuyen.ForeColor = Color.MintCream;
+            lblQuyen.Location = new Point(82, 40);
+            lblQuyen.Name = "lblQuyen";
+            lblQuyen.Size = new Size(189, 64);
+            lblQuyen.TabIndex = 2;
+            lblQuyen.Text = "ADMIN";
+            lblQuyen.Click += label2_Click;
             // 
             // lblTenTK
             // 
@@ -250,38 +319,31 @@
             pictureBox1.Image = Properties.Resources.Main;
             pictureBox1.Location = new Point(366, 35);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1064, 735);
+            pictureBox1.Size = new Size(1205, 735);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
             // 
-            // panel1
+            // pnlLeft
             // 
-            panel1.BackColor = Color.Cornsilk;
-            panel1.Controls.Add(flowLayoutPanel1);
-            panel1.Controls.Add(lblTenTK);
-            panel1.Controls.Add(panel2);
-            panel1.Dock = DockStyle.Left;
-            panel1.Location = new Point(0, 35);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(366, 735);
-            panel1.TabIndex = 3;
+            pnlLeft.BackColor = Color.Cornsilk;
+            pnlLeft.Controls.Add(lblTenTK);
+            pnlLeft.Controls.Add(pnlQuyen);
+            pnlLeft.Dock = DockStyle.Left;
+            pnlLeft.Location = new Point(0, 35);
+            pnlLeft.Name = "pnlLeft";
+            pnlLeft.Size = new Size(366, 735);
+            pnlLeft.TabIndex = 3;
+            pnlLeft.Paint += panel1_Paint;
             // 
-            // flowLayoutPanel1
+            // pnlQuyen
             // 
-            flowLayoutPanel1.Location = new Point(116, 84);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(8, 8);
-            flowLayoutPanel1.TabIndex = 5;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.FromArgb(0, 0, 64);
-            panel2.Controls.Add(label2);
-            panel2.Location = new Point(0, 137);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(366, 150);
-            panel2.TabIndex = 4;
+            pnlQuyen.BackColor = Color.FromArgb(0, 0, 64);
+            pnlQuyen.Controls.Add(lblQuyen);
+            pnlQuyen.Location = new Point(0, 137);
+            pnlQuyen.Name = "pnlQuyen";
+            pnlQuyen.Size = new Size(366, 150);
+            pnlQuyen.TabIndex = 4;
             // 
             // giaoDịchToolStripMenuItem
             // 
@@ -294,10 +356,11 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1430, 770);
+            ClientSize = new Size(1571, 770);
             Controls.Add(pictureBox1);
-            Controls.Add(panel1);
+            Controls.Add(pnlLeft);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
             Name = "frmQuanLy";
@@ -307,10 +370,10 @@
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            pnlLeft.ResumeLayout(false);
+            pnlLeft.PerformLayout();
+            pnlQuyen.ResumeLayout(false);
+            pnlQuyen.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -319,7 +382,7 @@
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem mnuGiaoDich;
-        private Label label2;
+        private Label lblQuyen;
         private ToolStripMenuItem mnuHeThong;
         private ToolStripMenuItem mnuBanHang;
         private ToolStripMenuItem mnuQLHoaDon;
@@ -338,10 +401,14 @@
         private ToolStripMenuItem mnuQLKhachHang;
         private PictureBox pictureBox1;
         private Label lblTenTK;
-        private Panel panel1;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private Panel panel2;
+        private Panel pnlLeft;
+        private Panel pnlQuyen;
         private ToolStripMenuItem giaoDịchToolStripMenuItem;
-        private ToolStripMenuItem giaoDịchToolStripMenuItem1;
+        private ToolStripMenuItem mnuThoat;
+        private ToolStripMenuItem mnuGiaoDien;
+        private ToolStripMenuItem tímToolStripMenuItem;
+        private ToolStripMenuItem xanhToolStripMenuItem;
+        private ToolStripMenuItem đỏToolStripMenuItem;
+        private ToolStripMenuItem mnuBaoCao;
     }
 }

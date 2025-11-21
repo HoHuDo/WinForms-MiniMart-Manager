@@ -58,7 +58,7 @@
             lblTenTK.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
             lblTenTK.Location = new Point(70, 221);
             lblTenTK.Name = "lblTenTK";
-            lblTenTK.Size = new Size(131, 27);
+            lblTenTK.Size = new Size(111, 22);
             lblTenTK.TabIndex = 0;
             lblTenTK.Text = "Tên tài khoản";
             // 
@@ -68,7 +68,7 @@
             lblMatKhau.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
             lblMatKhau.Location = new Point(70, 291);
             lblMatKhau.Name = "lblMatKhau";
-            lblMatKhau.Size = new Size(167, 27);
+            lblMatKhau.Size = new Size(143, 22);
             lblMatKhau.TabIndex = 0;
             lblMatKhau.Text = "Mật khẩu hiện tại";
             lblMatKhau.Click += label2_Click;
@@ -79,7 +79,7 @@
             lblMatKhauMoi.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
             lblMatKhauMoi.Location = new Point(70, 361);
             lblMatKhauMoi.Name = "lblMatKhauMoi";
-            lblMatKhauMoi.Size = new Size(136, 27);
+            lblMatKhauMoi.Size = new Size(116, 22);
             lblMatKhauMoi.TabIndex = 0;
             lblMatKhauMoi.Text = "Mật khẩu mới";
             lblMatKhauMoi.Click += label2_Click;
@@ -90,7 +90,7 @@
             lblConfirm.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
             lblConfirm.Location = new Point(70, 431);
             lblConfirm.Name = "lblConfirm";
-            lblConfirm.Size = new Size(182, 27);
+            lblConfirm.Size = new Size(157, 22);
             lblConfirm.TabIndex = 0;
             lblConfirm.Text = "Xác nhận mật khẩu";
             lblConfirm.Click += label2_Click;
@@ -134,7 +134,7 @@
             txtTK.ForeColor = SystemColors.HotTrack;
             txtTK.Location = new Point(286, 221);
             txtTK.Name = "txtTK";
-            txtTK.Size = new Size(398, 27);
+            txtTK.Size = new Size(398, 23);
             txtTK.TabIndex = 0;
             // 
             // txtMK
@@ -144,7 +144,7 @@
             txtMK.ForeColor = Color.FromArgb(255, 128, 128);
             txtMK.Location = new Point(286, 290);
             txtMK.Name = "txtMK";
-            txtMK.Size = new Size(398, 27);
+            txtMK.Size = new Size(398, 23);
             txtMK.TabIndex = 1;
             // 
             // txtMKMoi
@@ -154,7 +154,7 @@
             txtMKMoi.ForeColor = Color.FromArgb(0, 192, 0);
             txtMKMoi.Location = new Point(286, 361);
             txtMKMoi.Name = "txtMKMoi";
-            txtMKMoi.Size = new Size(398, 27);
+            txtMKMoi.Size = new Size(398, 23);
             txtMKMoi.TabIndex = 2;
             // 
             // txtXacNhan
@@ -164,7 +164,7 @@
             txtXacNhan.ForeColor = Color.FromArgb(0, 192, 0);
             txtXacNhan.Location = new Point(286, 429);
             txtXacNhan.Name = "txtXacNhan";
-            txtXacNhan.Size = new Size(398, 27);
+            txtXacNhan.Size = new Size(398, 23);
             txtXacNhan.TabIndex = 3;
             // 
             // label1
@@ -172,7 +172,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(265, 218);
             label1.Name = "label1";
-            label1.Size = new Size(17, 27);
+            label1.Size = new Size(14, 22);
             label1.TabIndex = 0;
             label1.Text = ":";
             label1.Click += label1_Click;
@@ -182,7 +182,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(265, 289);
             label2.Name = "label2";
-            label2.Size = new Size(17, 27);
+            label2.Size = new Size(14, 22);
             label2.TabIndex = 0;
             label2.Text = ":";
             label2.Click += label1_Click;
@@ -192,7 +192,7 @@
             label3.AutoSize = true;
             label3.Location = new Point(265, 361);
             label3.Name = "label3";
-            label3.Size = new Size(17, 27);
+            label3.Size = new Size(14, 22);
             label3.TabIndex = 0;
             label3.Text = ":";
             label3.Click += label1_Click;
@@ -202,7 +202,7 @@
             label4.AutoSize = true;
             label4.Location = new Point(265, 429);
             label4.Name = "label4";
-            label4.Size = new Size(17, 27);
+            label4.Size = new Size(14, 22);
             label4.TabIndex = 0;
             label4.Text = ":";
             label4.Click += label1_Click;
@@ -223,9 +223,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.reset_password__2_;
-            pictureBox1.Location = new Point(286, 32);
+            pictureBox1.Location = new Point(286, 27);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(201, 183);
+            pictureBox1.Size = new Size(201, 188);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
@@ -246,14 +246,14 @@
             lblThoat.ForeColor = Color.LightCoral;
             lblThoat.Location = new Point(608, 601);
             lblThoat.Name = "lblThoat";
-            lblThoat.Size = new Size(63, 27);
+            lblThoat.Size = new Size(53, 22);
             lblThoat.TabIndex = 5;
             lblThoat.Text = "Thoát";
             lblThoat.Click += lblThoat_Click_2;
             // 
             // frmDoiMatKhau
             // 
-            AutoScaleDimensions = new SizeF(11F, 27F);
+            AutoScaleDimensions = new SizeF(10F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(746, 673);

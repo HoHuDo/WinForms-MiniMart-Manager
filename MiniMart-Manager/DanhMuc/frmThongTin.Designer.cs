@@ -64,9 +64,9 @@
             label2.Font = new Font("Segoe UI Variable Display", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.Location = new Point(30, 34);
             label2.Name = "label2";
-            label2.Size = new Size(329, 53);
+            label2.Size = new Size(422, 53);
             label2.TabIndex = 0;
-            label2.Text = "Quản Lý Siêu Thị";
+            label2.Text = "Quản Lý Siêu Thị Mini";
             // 
             // label3
             // 

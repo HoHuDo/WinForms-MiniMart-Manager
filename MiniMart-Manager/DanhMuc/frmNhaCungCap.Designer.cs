@@ -1,6 +1,6 @@
 ﻿namespace MiniMart_Manager.DanhMuc
 {
-    partial class frmNhacCungCap
+    partial class frmNhaCungCap
     {
         /// <summary>
         /// Required designer variable.
@@ -28,16 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnThoat = new Button();
-            button5 = new Button();
-            btnXuat = new Button();
-            btnSua = new Button();
-            btnXoa = new Button();
-            button1 = new Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNhaCungCap));
             txtDiaChi = new TextBox();
             txtTenNCC = new TextBox();
             txtMaNCC = new TextBox();
             grbChucNang = new GroupBox();
+            btnThoat = new Button();
+            btnXuat = new Button();
+            btnSua = new Button();
+            btnXoa = new Button();
             btnThem = new Button();
             label5 = new Label();
             lblMa = new Label();
@@ -50,76 +49,11 @@
             lblTenTK = new Label();
             label1 = new Label();
             panel1 = new Panel();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button6 = new Button();
-            button7 = new Button();
             grbChucNang.SuspendLayout();
             grbThongTin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvNhaCC).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // btnThoat
-            // 
-            btnThoat.BackColor = Color.FromArgb(255, 192, 192);
-            btnThoat.FlatAppearance.BorderSize = 0;
-            btnThoat.FlatStyle = FlatStyle.Flat;
-            btnThoat.Location = new Point(54, 572);
-            btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(137, 62);
-            btnThoat.TabIndex = 0;
-            btnThoat.Text = "Thoát";
-            btnThoat.UseVisualStyleBackColor = false;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(54, 572);
-            button5.Name = "button5";
-            button5.Size = new Size(137, 62);
-            button5.TabIndex = 0;
-            button5.Text = "button1";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // btnXuat
-            // 
-            btnXuat.BackColor = Color.FromArgb(192, 255, 192);
-            btnXuat.FlatAppearance.BorderSize = 0;
-            btnXuat.FlatStyle = FlatStyle.Flat;
-            btnXuat.Location = new Point(54, 451);
-            btnXuat.Name = "btnXuat";
-            btnXuat.Size = new Size(137, 62);
-            btnXuat.TabIndex = 0;
-            btnXuat.Text = "Xuất Excel";
-            btnXuat.UseVisualStyleBackColor = false;
-            // 
-            // btnSua
-            // 
-            btnSua.Location = new Point(54, 209);
-            btnSua.Name = "btnSua";
-            btnSua.Size = new Size(137, 62);
-            btnSua.TabIndex = 0;
-            btnSua.Text = "Sửa";
-            btnSua.UseVisualStyleBackColor = true;
-            // 
-            // btnXoa
-            // 
-            btnXoa.Location = new Point(54, 330);
-            btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(137, 62);
-            btnXoa.TabIndex = 0;
-            btnXoa.Text = "Xóa";
-            btnXoa.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(54, 88);
-            button1.Name = "button1";
-            button1.Size = new Size(137, 62);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
             // 
             // txtDiaChi
             // 
@@ -146,18 +80,11 @@
             // grbChucNang
             // 
             grbChucNang.BackColor = SystemColors.ButtonHighlight;
-            grbChucNang.Controls.Add(button7);
             grbChucNang.Controls.Add(btnThoat);
-            grbChucNang.Controls.Add(button6);
-            grbChucNang.Controls.Add(button5);
-            grbChucNang.Controls.Add(button4);
             grbChucNang.Controls.Add(btnXuat);
-            grbChucNang.Controls.Add(button3);
             grbChucNang.Controls.Add(btnSua);
-            grbChucNang.Controls.Add(button2);
             grbChucNang.Controls.Add(btnXoa);
             grbChucNang.Controls.Add(btnThem);
-            grbChucNang.Controls.Add(button1);
             grbChucNang.Dock = DockStyle.Right;
             grbChucNang.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
             grbChucNang.Location = new Point(1134, 92);
@@ -167,14 +94,71 @@
             grbChucNang.TabStop = false;
             grbChucNang.Text = "Chức Năng";
             // 
+            // btnThoat
+            // 
+            btnThoat.BackColor = Color.FromArgb(255, 192, 192);
+            btnThoat.FlatAppearance.BorderSize = 0;
+            btnThoat.FlatStyle = FlatStyle.Flat;
+            btnThoat.Image = Properties.Resources.logout32px;
+            btnThoat.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThoat.Location = new Point(54, 552);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(149, 62);
+            btnThoat.TabIndex = 0;
+            btnThoat.Text = "&Thoát";
+            btnThoat.UseVisualStyleBackColor = false;
+            btnThoat.Click += btnThoat_Click;
+            // 
+            // btnXuat
+            // 
+            btnXuat.BackColor = Color.FromArgb(192, 255, 192);
+            btnXuat.FlatAppearance.BorderSize = 0;
+            btnXuat.FlatStyle = FlatStyle.Flat;
+            btnXuat.Image = Properties.Resources.excel;
+            btnXuat.ImageAlign = ContentAlignment.MiddleLeft;
+            btnXuat.Location = new Point(54, 433);
+            btnXuat.Name = "btnXuat";
+            btnXuat.Size = new Size(149, 62);
+            btnXuat.TabIndex = 0;
+            btnXuat.Text = "       Xuất &Excel";
+            btnXuat.UseVisualStyleBackColor = false;
+            btnXuat.Click += btnXuat_Click;
+            // 
+            // btnSua
+            // 
+            btnSua.Image = Properties.Resources.refresh;
+            btnSua.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSua.Location = new Point(54, 195);
+            btnSua.Name = "btnSua";
+            btnSua.Size = new Size(149, 62);
+            btnSua.TabIndex = 0;
+            btnSua.Text = "Sửa";
+            btnSua.UseVisualStyleBackColor = true;
+            btnSua.Click += btnSua_Click;
+            // 
+            // btnXoa
+            // 
+            btnXoa.Image = Properties.Resources.delete;
+            btnXoa.ImageAlign = ContentAlignment.MiddleLeft;
+            btnXoa.Location = new Point(54, 314);
+            btnXoa.Name = "btnXoa";
+            btnXoa.Size = new Size(149, 62);
+            btnXoa.TabIndex = 0;
+            btnXoa.Text = "Xóa";
+            btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click;
+            // 
             // btnThem
             // 
-            btnThem.Location = new Point(54, 88);
+            btnThem.Image = Properties.Resources.more;
+            btnThem.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThem.Location = new Point(54, 76);
             btnThem.Name = "btnThem";
-            btnThem.Size = new Size(137, 62);
+            btnThem.Size = new Size(149, 62);
             btnThem.TabIndex = 0;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click;
             // 
             // label5
             // 
@@ -220,6 +204,8 @@
             txtSDT.Name = "txtSDT";
             txtSDT.Size = new Size(323, 34);
             txtSDT.TabIndex = 1;
+            txtSDT.TextChanged += txtSDT_TextChanged;
+            txtSDT.KeyPress += txtSDT_KeyPress;
             // 
             // label2
             // 
@@ -283,68 +269,7 @@
             panel1.Size = new Size(1371, 92);
             panel1.TabIndex = 4;
             // 
-            // button2
-            // 
-            button2.Image = Properties.Resources.more;
-            button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(54, 88);
-            button2.Name = "button2";
-            button2.Size = new Size(149, 62);
-            button2.TabIndex = 0;
-            button2.Text = "Thêm";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Image = Properties.Resources.delete;
-            button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(54, 330);
-            button3.Name = "button3";
-            button3.Size = new Size(149, 62);
-            button3.TabIndex = 0;
-            button3.Text = "Xóa";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Image = Properties.Resources.refresh;
-            button4.ImageAlign = ContentAlignment.MiddleLeft;
-            button4.Location = new Point(54, 209);
-            button4.Name = "button4";
-            button4.Size = new Size(149, 62);
-            button4.TabIndex = 0;
-            button4.Text = "Sửa";
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            button6.BackColor = Color.FromArgb(192, 255, 192);
-            button6.FlatAppearance.BorderSize = 0;
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.Image = Properties.Resources.excel;
-            button6.ImageAlign = ContentAlignment.MiddleLeft;
-            button6.Location = new Point(54, 451);
-            button6.Name = "button6";
-            button6.Size = new Size(149, 62);
-            button6.TabIndex = 0;
-            button6.Text = "       Xuất Excel";
-            button6.UseVisualStyleBackColor = false;
-            // 
-            // button7
-            // 
-            button7.BackColor = Color.FromArgb(255, 192, 192);
-            button7.FlatAppearance.BorderSize = 0;
-            button7.FlatStyle = FlatStyle.Flat;
-            button7.Image = Properties.Resources.logout32px;
-            button7.ImageAlign = ContentAlignment.MiddleLeft;
-            button7.Location = new Point(54, 572);
-            button7.Name = "button7";
-            button7.Size = new Size(149, 62);
-            button7.TabIndex = 0;
-            button7.Text = "Thoát";
-            button7.UseVisualStyleBackColor = false;
-            // 
-            // frmNhacCungCap
+            // frmNhaCungCap
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -353,9 +278,10 @@
             Controls.Add(grbThongTin);
             Controls.Add(grbChucNang);
             Controls.Add(panel1);
-            Name = "frmNhacCungCap";
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "frmNhaCungCap";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmNhacCungCap";
+            Text = "Quản Lí Nhà Cung Cấp";
             Load += frmNhacCungCap_Load;
             grbChucNang.ResumeLayout(false);
             grbThongTin.ResumeLayout(false);
@@ -367,18 +293,10 @@
         }
 
         #endregion
-
-        private Button btnThoat;
-        private Button button5;
-        private Button btnXuat;
-        private Button btnSua;
-        private Button btnXoa;
-        private Button button1;
         private TextBox txtDiaChi;
         private TextBox txtTenNCC;
         private TextBox txtMaNCC;
         private GroupBox grbChucNang;
-        private Button btnThem;
         private Label label5;
         private Label lblMa;
         private GroupBox grbThongTin;
@@ -390,10 +308,10 @@
         private Panel panel1;
         private TextBox txtSDT;
         private Label label2;
-        private Button button7;
-        private Button button6;
-        private Button button4;
-        private Button button3;
-        private Button button2;
+        private Button btnThoat;
+        private Button btnXuat;
+        private Button btnSua;
+        private Button btnXoa;
+        private Button btnThem;
     }
 }

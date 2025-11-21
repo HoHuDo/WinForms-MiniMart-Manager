@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLoaiHang));
             panel1 = new Panel();
             lblTenTK = new Label();
             label1 = new Label();
@@ -81,9 +82,9 @@
             label1.Font = new Font("Segoe UI Variable Text", 20F, FontStyle.Bold);
             label1.Location = new Point(26, 9);
             label1.Name = "label1";
-            label1.Size = new Size(213, 53);
+            label1.Size = new Size(375, 53);
             label1.TabIndex = 0;
-            label1.Text = "Loại Hàng";
+            label1.Text = "Quản Lý Loại Hàng";
             label1.Click += label1_Click;
             // 
             // dgvLoaiHang
@@ -95,7 +96,7 @@
             dgvLoaiHang.Location = new Point(0, 356);
             dgvLoaiHang.Name = "dgvLoaiHang";
             dgvLoaiHang.RowHeadersWidth = 62;
-            dgvLoaiHang.Size = new Size(989, 451);
+            dgvLoaiHang.Size = new Size(992, 451);
             dgvLoaiHang.TabIndex = 1;
             dgvLoaiHang.CellClick += dgvLoaiHang_CellClick;
             dgvLoaiHang.CellContentClick += dgvLoaiHang_CellContentClick;
@@ -113,31 +114,31 @@
             grbThongTin.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
             grbThongTin.Location = new Point(0, 92);
             grbThongTin.Name = "grbThongTin";
-            grbThongTin.Size = new Size(989, 264);
+            grbThongTin.Size = new Size(992, 264);
             grbThongTin.TabIndex = 2;
             grbThongTin.TabStop = false;
             grbThongTin.Text = "Thông Tin";
             // 
             // txtMoTa
             // 
-            txtMoTa.Location = new Point(598, 64);
+            txtMoTa.Location = new Point(601, 69);
             txtMoTa.Multiline = true;
             txtMoTa.Name = "txtMoTa";
-            txtMoTa.Size = new Size(323, 139);
+            txtMoTa.Size = new Size(320, 134);
             txtMoTa.TabIndex = 1;
             // 
             // txtTenLH
             // 
-            txtTenLH.Location = new Point(189, 172);
+            txtTenLH.Location = new Point(192, 172);
             txtTenLH.Name = "txtTenLH";
-            txtTenLH.Size = new Size(250, 34);
+            txtTenLH.Size = new Size(247, 34);
             txtTenLH.TabIndex = 1;
             // 
             // txtMaLH
             // 
-            txtMaLH.Location = new Point(189, 64);
+            txtMaLH.Location = new Point(192, 64);
             txtMaLH.Name = "txtMaLH";
-            txtMaLH.Size = new Size(131, 34);
+            txtMaLH.Size = new Size(128, 34);
             txtMaLH.TabIndex = 1;
             // 
             // label5
@@ -179,9 +180,9 @@
             grbChucNang.Controls.Add(button1);
             grbChucNang.Dock = DockStyle.Right;
             grbChucNang.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
-            grbChucNang.Location = new Point(989, 92);
+            grbChucNang.Location = new Point(992, 92);
             grbChucNang.Name = "grbChucNang";
-            grbChucNang.Size = new Size(237, 715);
+            grbChucNang.Size = new Size(234, 715);
             grbChucNang.TabIndex = 3;
             grbChucNang.TabStop = false;
             grbChucNang.Text = "Chức Năng";
@@ -193,18 +194,19 @@
             btnThoat.FlatStyle = FlatStyle.Flat;
             btnThoat.Image = Properties.Resources.logout32px;
             btnThoat.ImageAlign = ContentAlignment.MiddleLeft;
-            btnThoat.Location = new Point(54, 572);
+            btnThoat.Location = new Point(57, 577);
             btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(149, 62);
+            btnThoat.Size = new Size(146, 57);
             btnThoat.TabIndex = 0;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = false;
+            btnThoat.Click += btnThoat_Click;
             // 
             // button5
             // 
-            button5.Location = new Point(54, 572);
+            button5.Location = new Point(57, 577);
             button5.Name = "button5";
-            button5.Size = new Size(137, 62);
+            button5.Size = new Size(134, 57);
             button5.TabIndex = 0;
             button5.Text = "button1";
             button5.UseVisualStyleBackColor = true;
@@ -216,51 +218,55 @@
             btnXuat.FlatStyle = FlatStyle.Flat;
             btnXuat.Image = Properties.Resources.excel;
             btnXuat.ImageAlign = ContentAlignment.MiddleLeft;
-            btnXuat.Location = new Point(54, 451);
+            btnXuat.Location = new Point(57, 456);
             btnXuat.Name = "btnXuat";
-            btnXuat.Size = new Size(149, 62);
+            btnXuat.Size = new Size(146, 57);
             btnXuat.TabIndex = 0;
             btnXuat.Text = "       Xuất Excel";
             btnXuat.UseVisualStyleBackColor = false;
+            btnXuat.Click += btnXuat_Click;
             // 
             // btnSua
             // 
             btnSua.Image = Properties.Resources.refresh;
             btnSua.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSua.Location = new Point(54, 209);
+            btnSua.Location = new Point(57, 214);
             btnSua.Name = "btnSua";
-            btnSua.Size = new Size(149, 62);
+            btnSua.Size = new Size(146, 57);
             btnSua.TabIndex = 0;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
+            btnSua.Click += btnSua_Click;
             // 
             // btnXoa
             // 
             btnXoa.Image = Properties.Resources.delete;
             btnXoa.ImageAlign = ContentAlignment.MiddleLeft;
-            btnXoa.Location = new Point(54, 330);
+            btnXoa.Location = new Point(57, 335);
             btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(149, 62);
+            btnXoa.Size = new Size(146, 57);
             btnXoa.TabIndex = 0;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click;
             // 
             // btnThem
             // 
             btnThem.Image = Properties.Resources.more;
             btnThem.ImageAlign = ContentAlignment.MiddleLeft;
-            btnThem.Location = new Point(54, 88);
+            btnThem.Location = new Point(57, 93);
             btnThem.Name = "btnThem";
-            btnThem.Size = new Size(149, 62);
+            btnThem.Size = new Size(146, 57);
             btnThem.TabIndex = 0;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(54, 88);
+            button1.Location = new Point(57, 93);
             button1.Name = "button1";
-            button1.Size = new Size(137, 62);
+            button1.Size = new Size(134, 57);
             button1.TabIndex = 0;
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
@@ -274,9 +280,11 @@
             Controls.Add(grbThongTin);
             Controls.Add(grbChucNang);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmLoaiHang";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmLoaiHang";
+            Text = "Quản Lý Loại Hàng";
             Load += frmLoaiHang_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

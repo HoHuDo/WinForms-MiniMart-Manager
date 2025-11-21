@@ -10,11 +10,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="bin\Debug\net8.0-windows\" />
+    <Content Include="bin\Debug\net8.0-windows\Images\AoPhongUnisex.jpg" />
+    <Content Include="bin\Debug\net8.0-windows\Images\BanhQuy.jpg" />
+    <Content Include="bin\Debug\net8.0-windows\Images\ButBiThienLong.jpg" />
+    <Content Include="bin\Debug\net8.0-windows\Images\KhoGa.jpg" />
+    <Content Include="bin\Debug\net8.0-windows\Images\NuocEpCam.jpg" />
+    <Content Include="bin\Debug\net8.0-windows\Images\TaiNgheKhongDay.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.3" />
+    <PackageReference Include="Microsoft.Office.Interop.Excel" Version="16.0.18925.20022" />
+    <PackageReference Include="MicrosoftOfficeCore" Version="15.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
   </ItemGroup>
 

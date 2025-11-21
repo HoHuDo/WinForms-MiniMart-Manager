@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTroGiup));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             label4 = new Label();
@@ -46,8 +47,10 @@
             label12 = new Label();
             label10 = new Label();
             label8 = new Label();
-            label7 = new Label();
+            lblLienHe = new Label();
             label5 = new Label();
+            label16 = new Label();
+            lblDiaChi = new Label();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -124,9 +127,9 @@
             label1.Font = new Font("Segoe UI Variable Display Semib", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(254, 91);
             label1.Name = "label1";
-            label1.Size = new Size(289, 30);
+            label1.Size = new Size(339, 30);
             label1.TabIndex = 7;
-            label1.Text = "Phần Mềm Quản Lý Siêu Thị";
+            label1.Text = "Phần Mềm Quản Lý Siêu Thị Mini";
             // 
             // pictureBox1
             // 
@@ -141,7 +144,9 @@
             // tabPage2
             // 
             tabPage2.Controls.Add(groupBox1);
-            tabPage2.Controls.Add(label7);
+            tabPage2.Controls.Add(lblDiaChi);
+            tabPage2.Controls.Add(label16);
+            tabPage2.Controls.Add(lblLienHe);
             tabPage2.Controls.Add(label5);
             tabPage2.Location = new Point(4, 33);
             tabPage2.Name = "tabPage2";
@@ -161,7 +166,7 @@
             groupBox1.Controls.Add(label12);
             groupBox1.Controls.Add(label10);
             groupBox1.Controls.Add(label8);
-            groupBox1.Location = new Point(81, 98);
+            groupBox1.Location = new Point(81, 127);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(688, 288);
             groupBox1.TabIndex = 1;
@@ -171,7 +176,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(364, 68);
+            label9.Location = new Point(368, 65);
             label9.Name = "label9";
             label9.Size = new Size(48, 24);
             label9.TabIndex = 0;
@@ -180,7 +185,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(364, 113);
+            label11.Location = new Point(368, 110);
             label11.Name = "label11";
             label11.Size = new Size(135, 24);
             label11.TabIndex = 0;
@@ -189,7 +194,7 @@
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(364, 205);
+            label15.Location = new Point(368, 202);
             label15.Name = "label15";
             label15.Size = new Size(44, 24);
             label15.TabIndex = 0;
@@ -198,7 +203,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(364, 159);
+            label13.Location = new Point(368, 156);
             label13.Name = "label13";
             label13.Size = new Size(91, 24);
             label13.TabIndex = 0;
@@ -207,7 +212,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(23, 205);
+            label14.Location = new Point(27, 202);
             label14.Name = "label14";
             label14.Size = new Size(211, 24);
             label14.TabIndex = 0;
@@ -216,7 +221,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(23, 159);
+            label12.Location = new Point(27, 156);
             label12.Name = "label12";
             label12.Size = new Size(134, 24);
             label12.TabIndex = 0;
@@ -225,7 +230,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(23, 113);
+            label10.Location = new Point(27, 110);
             label10.Name = "label10";
             label10.Size = new Size(83, 24);
             label10.TabIndex = 0;
@@ -234,20 +239,20 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(23, 68);
+            label8.Location = new Point(27, 65);
             label8.Name = "label8";
             label8.Size = new Size(116, 24);
             label8.TabIndex = 0;
             label8.Text = ".NET Runtime";
             // 
-            // label7
+            // lblLienHe
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(264, 47);
-            label7.Name = "label7";
-            label7.Size = new Size(505, 24);
-            label7.TabIndex = 0;
-            label7.Text = "Hotline: 0899889122 / Email: hahahihihuhuhehe00@gmail.com";
+            lblLienHe.AutoSize = true;
+            lblLienHe.Location = new Point(264, 47);
+            lblLienHe.Name = "lblLienHe";
+            lblLienHe.Size = new Size(505, 24);
+            lblLienHe.TabIndex = 0;
+            lblLienHe.Text = "Hotline: 0899889122 / Email: hahahihihuhuhehe00@gmail.com";
             // 
             // label5
             // 
@@ -258,6 +263,25 @@
             label5.TabIndex = 0;
             label5.Text = "Thông tin liên hệ:";
             // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(81, 81);
+            label16.Name = "label16";
+            label16.Size = new Size(70, 24);
+            label16.TabIndex = 0;
+            label16.Text = "Địa Chỉ:";
+            // 
+            // lblDiaChi
+            // 
+            lblDiaChi.AutoSize = true;
+            lblDiaChi.Location = new Point(264, 81);
+            lblDiaChi.Name = "lblDiaChi";
+            lblDiaChi.Size = new Size(120, 24);
+            lblDiaChi.TabIndex = 0;
+            lblDiaChi.Text = "So 3 Cau Giay";
+            lblDiaChi.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // frmTroGiup
             // 
             AutoScaleDimensions = new SizeF(10F, 24F);
@@ -266,8 +290,8 @@
             ClientSize = new Size(864, 492);
             Controls.Add(tabControl1);
             Font = new Font("Segoe UI Variable Text", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmTroGiup";
-            ShowIcon = false;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Trợ Giúp";
@@ -295,7 +319,7 @@
         private PictureBox pictureBox1;
         private TabPage tabPage2;
         private Label label5;
-        private Label label7;
+        private Label lblLienHe;
         private GroupBox groupBox1;
         private Label label8;
         private Label label9;
@@ -305,5 +329,7 @@
         private Label label12;
         private Label label14;
         private Label label15;
+        private Label lblDiaChi;
+        private Label label16;
     }
 }
