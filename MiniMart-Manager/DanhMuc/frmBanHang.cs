@@ -1,5 +1,7 @@
-﻿using MiniMart_Manager.Classes;
+﻿
+using MiniMart_Manager.Classes;
 using System.Data;
+using System.Globalization;
 using Excel = Microsoft.Office.Interop.Excel;
 namespace MiniMart_Manager.DanhMuc
 {
@@ -13,13 +15,44 @@ namespace MiniMart_Manager.DanhMuc
         {
             InitializeComponent();
         }
+        public string SinhMaTuDong(string TenBang, string MaBatDau, string TruongMa)
+        {
+            int id = 1;
+            bool dung = false;
+            string ma = "";
 
+            while (dung == false)
+            {
+                string maKiemTra = MaBatDau + id.ToString("000");
+
+                DataTable dm = dtBase.ReadData("Select * from " + TenBang + " where " + TruongMa + "='" + maKiemTra + "'");
+
+                if (dm.Rows.Count == 0)
+                {
+                    ma = maKiemTra;
+                    dung = true;
+                }
+                else
+                {
+                    id++;
+                }
+            }
+            return ma;
+        }
         private void frmBanHang_Load(object sender, EventArgs e)
         {
             lblTenTK.Text = GlobalData.Quyen + ": " + GlobalData.TenDangNhap;
-
             LoadDataSanPham();
-
+            LoadDataChiTiet();
+            DataTable dtLoaiHang = dtBase.ReadData("SELECT MaLoaiHang, TenLoaiHang FROM LoaiHang");
+            cbxDanhMuc.DataSource = dtLoaiHang;
+            DataRow RowAll = dtLoaiHang.NewRow();
+            RowAll["MaLoaiHang"] = 0;
+            RowAll["TenLoaiHang"] = "Tất Cả";
+            dtLoaiHang.Rows.InsertAt(RowAll, 0);
+            cbxDanhMuc.ValueMember = "MaLoaiHang";
+            cbxDanhMuc.DisplayMember = "TenLoaiHang";
+            cbxDanhMuc.SelectedIndex = 0;
             cbxKhachHang.DataSource = dtBase.ReadData("Select MaKhachHang, TenKhachHang From KhachHang");
             cbxKhachHang.DisplayMember = "TenKhachHang";
             cbxKhachHang.ValueMember = "MaKhachHang";
@@ -29,43 +62,48 @@ namespace MiniMart_Manager.DanhMuc
             cbxSP.DisplayMember = "TenSanPham";
             cbxSP.ValueMember = "MaSanPham";
             cbxSP.SelectedIndex = -1;
-
+            cbxKhachHang.SelectedIndex = -1;
             TaoMoiHoaDon();
+            txtMHD.Text = currentMaHD;
+
         }
 
         private void LoadDataSanPham()
         {
-            dgvSanPham.DataSource = dtBase.ReadData("Select MaSanPham, TenSanPham, MaLoaiHang, DonViTinh, GiaBan, SoLuongTon, Anh From SanPham");
+            dgvSanPham.DataSource = dtBase.ReadData("Select MaSanPham, TenSanPham, MaLoaiHang, DonViTinh, GiaBan, SoLuongTon From SanPham");
+            dgvSanPham.Columns[0].HeaderText = "Mã SP";
+            dgvSanPham.Columns[1].HeaderText = "Tên SP";
+            dgvSanPham.Columns[2].HeaderText = "Mã LH";
+            dgvSanPham.Columns[3].HeaderText = "Đơn Vị";
+            dgvSanPham.Columns[4].HeaderText = "Giá Bán";
+            dgvSanPham.Columns[5].HeaderText = "SL Tồn";
         }
 
         private void TaoMoiHoaDon()
         {
-            DataTable dt = dtBase.ReadData("SELECT TOP 1 MaHoaDon FROM HoaDon ORDER BY MaHoaDon DESC");
-            string maCuoi = "";
-            if (dt.Rows.Count > 0)
-                maCuoi = dt.Rows[0][0].ToString();
-
-            if (string.IsNullOrEmpty(maCuoi))
+            if (!string.IsNullOrEmpty(currentMaHD))
             {
-                currentMaHD = "HD001";
+                return;
             }
-            else
-            {
-                string phanSo = maCuoi.Substring(2);
-                int soMoi = int.Parse(phanSo) + 1;
+            string prefixNgay = "HDB_" + DateTime.Now.ToString("ddMMyyyy");
 
-                if (soMoi < 10) currentMaHD = "HD00" + soMoi;
-                else if (soMoi < 100) currentMaHD = "HD0" + soMoi;
-                else currentMaHD = "HD" + soMoi;
-            }
+            currentMaHD = SinhMaTuDong("HoaDon", prefixNgay, "MaHoaDon");
 
             string ngayLap = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            string maKH = (cbxKhachHang.Items.Count > 0 && cbxKhachHang.SelectedValue != null) ? cbxKhachHang.SelectedValue.ToString() : "KH001";
+
+            string maKH = "KH001";
+            if (cbxKhachHang.Items.Count > 0 && cbxKhachHang.SelectedValue != null)
+            {
+                maKH = cbxKhachHang.SelectedValue.ToString();
+            }
 
             try
             {
                 dtBase.UpdateData("INSERT INTO HoaDon(MaHoaDon, MaKhachHang, MaNhanVien, NgayLap, TongTien) VALUES(N'"
-                    + currentMaHD + "', N'" + maKH + "', N'" + GlobalData.MaNV + "', '" + ngayLap + "', 0)");
+                    + currentMaHD + "', N'"
+                    + maKH + "', N'"
+                    + GlobalData.MaNV + "', '"
+                    + ngayLap + "', 0)");
 
                 LoadDataChiTiet();
             }
@@ -78,6 +116,20 @@ namespace MiniMart_Manager.DanhMuc
         private void LoadDataChiTiet()
         {
             dgvChiTietDH.DataSource = dtBase.ReadData("Select * from ChiTietHoaDon Where MaHoaDon = N'" + currentMaHD + "'");
+            dgvChiTietDH.Columns[0].HeaderText = "Mã HĐ";
+            dgvChiTietDH.Columns[1].HeaderText = "Mã SP";
+            dgvChiTietDH.Columns[2].HeaderText = "SL";
+            dgvChiTietDH.Columns[3].HeaderText = "Giá Bán";
+            dgvChiTietDH.Columns[4].HeaderText = "Giảm Giá";
+            dgvChiTietDH.Columns[5].HeaderText = "Thành Tiền";
+
+            NumberFormatInfo nfi = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
+            nfi.NumberGroupSeparator = ".";
+            DataTable dtTT = dtBase.ReadData("Select ISNULL(SUM(ThanhTien), 0) From ChiTietHoaDon Where MaHoaDon='" + currentMaHD + "'");
+            lblTong.Text = "Tổng Tiền: " + double.Parse(dtTT.Rows[0][0].ToString()).ToString("N0", nfi) + " VNĐ";
+            DataTable dtTSL = dtBase.ReadData("Select ISNULL(SUM(SoLuong), 0) From ChiTietHoaDon Where MaHoaDon='" + currentMaHD + "'");
+            lblTongSL.Text = "Tổng SL: " + dtTSL.Rows[0][0].ToString();
+
         }
 
         private void dgvSanPham_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -90,7 +142,7 @@ namespace MiniMart_Manager.DanhMuc
             txtGia.Text = dgvSanPham.CurrentRow.Cells["GiaBan"].Value.ToString();
             txtSlTrongKho.Text = dgvSanPham.CurrentRow.Cells["SoLuongTon"].Value.ToString();
             txtSlBan.Text = "1";
-            textBox5.Text = "0";
+            txtGiamGia.Text = "0";
             isLoading = false;
 
             TinhThanhTien();
@@ -113,7 +165,7 @@ namespace MiniMart_Manager.DanhMuc
 
             txtSlBan.Text = dgvChiTietDH.CurrentRow.Cells["SoLuong"].Value.ToString();
             txtGia.Text = dgvChiTietDH.CurrentRow.Cells["DonGiaBan"].Value.ToString();
-            textBox5.Text = dgvChiTietDH.CurrentRow.Cells["GiamGia"].Value.ToString();
+            txtGiamGia.Text = dgvChiTietDH.CurrentRow.Cells["GiamGia"].Value.ToString();
             lblThanhTien.Text = dgvChiTietDH.CurrentRow.Cells["ThanhTien"].Value.ToString();
             isLoading = false;
         }
@@ -121,6 +173,7 @@ namespace MiniMart_Manager.DanhMuc
         private void btnThem_Click(object sender, EventArgs e)
         {
             if (cbxSP.SelectedIndex == -1) { MessageBox.Show("Vui lòng chọn sản phẩm!"); return; }
+            if (cbxKhachHang.SelectedIndex == -1) { MessageBox.Show("Vui lòng chọn khách hàng"); return; }
             if (string.IsNullOrEmpty(txtSlBan.Text) || int.Parse(txtSlBan.Text) <= 0) { MessageBox.Show("Số lượng bán không hợp lệ!"); return; }
 
             string maSP = cbxSP.SelectedValue.ToString();
@@ -147,21 +200,22 @@ namespace MiniMart_Manager.DanhMuc
                     + maSP + "', "
                     + slBan + ", "
                     + txtGia.Text + ", "
-                    + textBox5.Text + ", "
+                    + txtGiamGia.Text + ", "
                     + lblThanhTien.Text + ")");
 
                 dtBase.UpdateData("UPDATE SanPham SET SoLuongTon = SoLuongTon - " + slBan + " WHERE MaSanPham = N'" + maSP + "'");
 
                 UpdateTongTienHoaDon();
-
-                LoadDataChiTiet();
                 LoadDataSanPham();
+                LoadDataChiTiet();
                 MessageBox.Show("Đã thêm sản phẩm vào đơn hàng.");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
+            cbxKhachHang.Enabled = false;
+            txtSĐT.Enabled = false;
         }
 
         private void btnSua_Click(object sender, EventArgs e)
@@ -185,14 +239,14 @@ namespace MiniMart_Manager.DanhMuc
             {
                 dtBase.UpdateData("UPDATE SanPham SET SoLuongTon = SoLuongTon + " + slCu + " WHERE MaSanPham = N'" + maSP + "'");
 
-                dtBase.UpdateData("UPDATE ChiTietHoaDon SET SoLuong = " + slMoi + ", GiamGia = " + textBox5.Text + ", ThanhTien = " + lblThanhTien.Text +
+                dtBase.UpdateData("UPDATE ChiTietHoaDon SET SoLuong = " + slMoi + ", GiamGia = " + txtGiamGia.Text + ", ThanhTien = " + lblThanhTien.Text +
                                   " WHERE MaHoaDon = N'" + currentMaHD + "' AND MaSanPham = N'" + maSP + "'");
 
                 dtBase.UpdateData("UPDATE SanPham SET SoLuongTon = SoLuongTon - " + slMoi + " WHERE MaSanPham = N'" + maSP + "'");
 
                 UpdateTongTienHoaDon();
-                LoadDataChiTiet();
                 LoadDataSanPham();
+                LoadDataChiTiet();
                 MessageBox.Show("Đã cập nhật đơn hàng.");
             }
             catch (Exception ex)
@@ -215,8 +269,8 @@ namespace MiniMart_Manager.DanhMuc
                 dtBase.UpdateData("DELETE FROM ChiTietHoaDon WHERE MaHoaDon = N'" + currentMaHD + "' AND MaSanPham = N'" + maSP + "'");
 
                 UpdateTongTienHoaDon();
-                LoadDataChiTiet();
                 LoadDataSanPham();
+                LoadDataChiTiet();
             }
         }
 
@@ -244,7 +298,7 @@ namespace MiniMart_Manager.DanhMuc
 
             double.TryParse(txtSlBan.Text, out soLuong);
             double.TryParse(txtGia.Text, out donGia);
-            double.TryParse(textBox5.Text, out chietKhau);
+            double.TryParse(txtGiamGia.Text, out chietKhau);
 
             double thanhTien = (soLuong * donGia) * (1 - chietKhau / 100);
             lblThanhTien.Text = thanhTien.ToString("0.##");
@@ -269,21 +323,19 @@ namespace MiniMart_Manager.DanhMuc
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có chắc muốn thoát không? Hóa đơn hiện tại (" + currentMaHD + ") sẽ được lưu.", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                this.Close();
-            }
+            this.Close();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
             txtSlBan.Clear();
-            textBox5.Text = "0";
+            txtGiamGia.Text = "0";
             lblThanhTien.Text = "0";
             cbxSP.SelectedIndex = -1;
             txtGia.Clear();
             txtSlTrongKho.Clear();
             cbxDonVi.SelectedIndex = -1;
+            cbxKhachHang.SelectedIndex = -1;
         }
 
         private void txtSlTrongKho_KeyPress(object sender, KeyPressEventArgs e)
@@ -460,6 +512,124 @@ namespace MiniMart_Manager.DanhMuc
             {
                 MessageBox.Show("Không tìm thấy sản phẩm!");
             }
+        }
+
+        private void cbxKhachHang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string maKhachHang = cbxKhachHang.SelectedValue?.ToString() ?? string.Empty;
+            DataTable dt = dtBase.ReadData("Select DiaChi,SoDienThoai From KhachHang Where MaKhachHang='" + maKhachHang + "'");
+            if (dt.Rows.Count > 0)
+            {
+                txtĐc.Text = dt.Rows[0]["DiaChi"].ToString();
+                txtSĐT.Text = dt.Rows[0]["SoDienThoai"].ToString();
+            }
+            else
+            {
+                txtĐc.Text = "";
+                txtSĐT.Text = "";
+            }
+        }
+
+        private void cbxSP_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            string maSP = cbxSP.SelectedValue?.ToString() ?? string.Empty;
+            DataTable dt = dtBase.ReadData("Select DonViTinh, GiaBan,  SoLuongTon From SanPham where MaSanPham='" + maSP + "'");
+            if (dt.Rows.Count > 0)
+            {
+                cbxDonVi.Text = dt.Rows[0]["DonViTinh"].ToString();
+                txtGia.Text = dt.Rows[0]["GiaBan"].ToString();
+                txtSlTrongKho.Text = dt.Rows[0]["SoLuongTon"].ToString();
+            }
+            else
+            {
+                cbxDonVi.Text = "";
+                txtGia.Text = "";
+                txtSlTrongKho.Text = "";
+            }
+        }
+
+        private void btnNewHĐ_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có chắc muốn tạo hóa đơn mới không? Hóa đơn hiện tại (" + currentMaHD + ") sẽ được lưu.", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (dgvChiTietDH.Rows.Count == 0)
+                {
+                    dtBase.UpdateData("DELETE FROM HoaDon WHERE MaHoaDon = N'" + currentMaHD + "'");
+                }
+                currentMaHD = "";
+                cbxKhachHang.Enabled = true;
+                txtSĐT.Enabled = true;
+                frmBanHang_Load(sender, e);
+            }
+        }
+
+        private void frmBanHang_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            if (MessageBox.Show("Bạn có chắc muốn thoát không? Hóa đơn hiện tại (" + currentMaHD + ") sẽ được lưu.", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (dgvChiTietDH.Rows.Count == 0)
+                {
+                    MessageBox.Show("Chi Tiết Hóa Đơn trống! Hóa Đơn này sẽ bị xóa");
+                    dtBase.UpdateData("DELETE FROM HoaDon WHERE MaHoaDon = N'" + currentMaHD + "'");
+                }
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void cbxDanhMuc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxDanhMuc.SelectedIndex == 0)
+            {
+                LoadDataSanPham();
+            }
+            else
+            {
+                dgvSanPham.DataSource = dtBase.ReadData("Select MaSanPham, TenSanPham, MaLoaiHang, DonViTinh, GiaBan, SoLuongTon From SanPham Where MaLoaiHang='" + cbxDanhMuc.SelectedValue.ToString() + "'");
+                dgvSanPham.Columns[0].HeaderText = "Mã SP";
+                dgvSanPham.Columns[1].HeaderText = "Tên SP";
+                dgvSanPham.Columns[2].HeaderText = "Mã LH";
+                dgvSanPham.Columns[3].HeaderText = "Đơn Vị";
+                dgvSanPham.Columns[4].HeaderText = "Giá Bán";
+                dgvSanPham.Columns[5].HeaderText = "SL Tồn";
+            }
+        }
+
+        private void txtTenSp_TextChanged(object sender, EventArgs e)
+        {
+            dgvSanPham.DataSource = dtBase.ReadData("Select MaSanPham, TenSanPham, MaLoaiHang, DonViTinh, GiaBan, SoLuongTon From SanPham Where TenSanPham Like N'%" + txtTenSp.Text + "%'");
+            dgvSanPham.Columns[0].HeaderText = "Mã SP";
+            dgvSanPham.Columns[1].HeaderText = "Tên SP";
+            dgvSanPham.Columns[2].HeaderText = "Mã LH";
+            dgvSanPham.Columns[3].HeaderText = "Đơn Vị";
+            dgvSanPham.Columns[4].HeaderText = "Giá Bán";
+            dgvSanPham.Columns[5].HeaderText = "SL Tồn";
+        }
+
+        private void btnSDT_Click(object sender, EventArgs e)
+        {
+            DataTable dt = dtBase.ReadData("Select MaKhachHang From KhachHang Where SoDienThoai='" + txtSĐT.Text + "'");
+            if (dt.Rows.Count > 0)
+            {
+                cbxKhachHang.SelectedValue = dt.Rows[0]["MaKhachHang"];
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy khách hàng có số điện thoại này");
+            }
+        }
+
+        private void lblThanhTien_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtGiamGia_ValueChanged(object sender, EventArgs e)
+        {
+            TinhThanhTien();
         }
     }
 }

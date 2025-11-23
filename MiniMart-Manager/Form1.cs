@@ -73,5 +73,11 @@ namespace MiniMart_Manager
             frmThongTin frm = new frmThongTin();
             frm.ShowDialog();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmQuanLy frm = new frmQuanLy();
+            frm.ShowDialog();
+        }
     }
 }

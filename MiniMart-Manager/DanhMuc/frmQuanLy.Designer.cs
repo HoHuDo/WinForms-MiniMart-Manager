@@ -249,7 +249,7 @@
             tímToolStripMenuItem.BackColor = Color.FromArgb(0, 0, 64);
             tímToolStripMenuItem.ForeColor = Color.MintCream;
             tímToolStripMenuItem.Name = "tímToolStripMenuItem";
-            tímToolStripMenuItem.Size = new Size(270, 36);
+            tímToolStripMenuItem.Size = new Size(162, 36);
             tímToolStripMenuItem.Text = "Tím";
             tímToolStripMenuItem.Click += tímToolStripMenuItem_Click;
             // 
@@ -258,7 +258,7 @@
             xanhToolStripMenuItem.BackColor = Color.SeaGreen;
             xanhToolStripMenuItem.ForeColor = Color.Cornsilk;
             xanhToolStripMenuItem.Name = "xanhToolStripMenuItem";
-            xanhToolStripMenuItem.Size = new Size(270, 36);
+            xanhToolStripMenuItem.Size = new Size(162, 36);
             xanhToolStripMenuItem.Text = "Xanh";
             xanhToolStripMenuItem.Click += xanhToolStripMenuItem_Click;
             // 
@@ -267,7 +267,7 @@
             đỏToolStripMenuItem.BackColor = Color.DarkRed;
             đỏToolStripMenuItem.ForeColor = Color.Snow;
             đỏToolStripMenuItem.Name = "đỏToolStripMenuItem";
-            đỏToolStripMenuItem.Size = new Size(270, 36);
+            đỏToolStripMenuItem.Size = new Size(162, 36);
             đỏToolStripMenuItem.Text = "Đỏ";
             đỏToolStripMenuItem.Click += đỏToolStripMenuItem_Click;
             // 

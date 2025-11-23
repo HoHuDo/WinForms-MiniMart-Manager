@@ -198,5 +198,11 @@ namespace MiniMart_Manager.DanhMuc
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmQuanLy frm = new frmQuanLy();
+            frm.ShowDialog();
+        }
     }
 }
