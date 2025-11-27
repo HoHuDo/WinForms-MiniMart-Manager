@@ -39,6 +39,38 @@ namespace MiniMart_Manager.DanhMuc
             }
             return ma;
         }
+        private void TaoMoiHoaDon()
+        {
+            if (!string.IsNullOrEmpty(currentMaHD))
+            {
+                return;
+            }
+            string prefixNgay = "HDB_" + DateTime.Now.ToString("ddMMyyyy");
+
+            currentMaHD = SinhMaTuDong("HoaDon", prefixNgay, "MaHoaDon");
+
+            string ngayLap = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+            string maKH = "KH001";
+            if (cbxKhachHang.Items.Count > 0 && cbxKhachHang.SelectedValue != null)
+            {
+                maKH = cbxKhachHang.SelectedValue.ToString();
+            }
+
+            try
+            {
+                dtBase.UpdateData("INSERT INTO HoaDon(MaHoaDon, MaKhachHang, MaNhanVien, NgayLap, TongTien) VALUES(N'"
+                    + currentMaHD + "', N'"
+                    + maKH + "', N'"
+                    + GlobalData.MaNV + "', '"
+                    + ngayLap + "', 0)");
+                LoadDataChiTiet();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tạo hóa đơn mới: " + ex.Message);
+            }
+        }
         private void frmBanHang_Load(object sender, EventArgs e)
         {
             lblTenTK.Text = GlobalData.Quyen + ": " + GlobalData.TenDangNhap;
@@ -79,39 +111,7 @@ namespace MiniMart_Manager.DanhMuc
             dgvSanPham.Columns[5].HeaderText = "SL Tồn";
         }
 
-        private void TaoMoiHoaDon()
-        {
-            if (!string.IsNullOrEmpty(currentMaHD))
-            {
-                return;
-            }
-            string prefixNgay = "HDB_" + DateTime.Now.ToString("ddMMyyyy");
 
-            currentMaHD = SinhMaTuDong("HoaDon", prefixNgay, "MaHoaDon");
-
-            string ngayLap = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
-            string maKH = "KH001";
-            if (cbxKhachHang.Items.Count > 0 && cbxKhachHang.SelectedValue != null)
-            {
-                maKH = cbxKhachHang.SelectedValue.ToString();
-            }
-
-            try
-            {
-                dtBase.UpdateData("INSERT INTO HoaDon(MaHoaDon, MaKhachHang, MaNhanVien, NgayLap, TongTien) VALUES(N'"
-                    + currentMaHD + "', N'"
-                    + maKH + "', N'"
-                    + GlobalData.MaNV + "', '"
-                    + ngayLap + "', 0)");
-
-                LoadDataChiTiet();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi tạo hóa đơn mới: " + ex.Message);
-            }
-        }
 
         private void LoadDataChiTiet()
         {
@@ -241,7 +241,6 @@ namespace MiniMart_Manager.DanhMuc
 
                 dtBase.UpdateData("UPDATE ChiTietHoaDon SET SoLuong = " + slMoi + ", GiamGia = " + txtGiamGia.Text + ", ThanhTien = " + lblThanhTien.Text +
                                   " WHERE MaHoaDon = N'" + currentMaHD + "' AND MaSanPham = N'" + maSP + "'");
-
                 dtBase.UpdateData("UPDATE SanPham SET SoLuongTon = SoLuongTon - " + slMoi + " WHERE MaSanPham = N'" + maSP + "'");
 
                 UpdateTongTienHoaDon();
@@ -282,7 +281,6 @@ namespace MiniMart_Manager.DanhMuc
             {
                 tongTien = dtSum.Rows[0][0].ToString();
             }
-
             string maKH = (cbxKhachHang.SelectedValue != null) ? cbxKhachHang.SelectedValue.ToString() : "KH001";
 
             dtBase.UpdateData("UPDATE HoaDon SET TongTien = " + tongTien + ", MaKhachHang = N'" + maKH + "' WHERE MaHoaDon = N'" + currentMaHD + "'");

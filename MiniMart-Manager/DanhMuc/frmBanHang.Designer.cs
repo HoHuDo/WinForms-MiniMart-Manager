@@ -38,6 +38,7 @@
             txtSĐT = new TextBox();
             txtĐc = new TextBox();
             txtGia = new TextBox();
+            txtGiamGia = new TextBox();
             txtSlBan = new TextBox();
             txtMHD = new TextBox();
             txtSlTrongKho = new TextBox();
@@ -78,7 +79,6 @@
             label16 = new Label();
             panel2 = new Panel();
             lblTongSL = new Label();
-            txtGiamGia = new TextBox();
             grbThongTin.SuspendLayout();
             grbChucNang.SuspendLayout();
             panel1.SuspendLayout();
@@ -121,11 +121,11 @@
             grbThongTin.Controls.Add(grbChucNang);
             grbThongTin.Dock = DockStyle.Right;
             grbThongTin.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
-            grbThongTin.Location = new Point(871, 131);
+            grbThongTin.Location = new Point(872, 131);
             grbThongTin.Margin = new Padding(2);
             grbThongTin.Name = "grbThongTin";
             grbThongTin.Padding = new Padding(2);
-            grbThongTin.Size = new Size(993, 823);
+            grbThongTin.Size = new Size(992, 823);
             grbThongTin.TabIndex = 1;
             grbThongTin.TabStop = false;
             grbThongTin.Text = "Thông Tin";
@@ -133,10 +133,10 @@
             // btnSĐT
             // 
             btnSĐT.Image = Properties.Resources.loupe;
-            btnSĐT.Location = new Point(916, 217);
+            btnSĐT.Location = new Point(921, 214);
             btnSĐT.Margin = new Padding(2);
             btnSĐT.Name = "btnSĐT";
-            btnSĐT.Size = new Size(42, 45);
+            btnSĐT.Size = new Size(54, 56);
             btnSĐT.TabIndex = 10;
             btnSĐT.UseVisualStyleBackColor = true;
             btnSĐT.Click += btnSDT_Click;
@@ -187,7 +187,7 @@
             // 
             // txtSĐT
             // 
-            txtSĐT.Location = new Point(639, 217);
+            txtSĐT.Location = new Point(639, 218);
             txtSĐT.Margin = new Padding(2);
             txtSĐT.Multiline = true;
             txtSĐT.Name = "txtSĐT";
@@ -221,6 +221,18 @@
             txtGia.TextChanged += textBox4_TextChanged;
             txtGia.KeyPress += txtSlTrongKho_KeyPress;
             // 
+            // txtGiamGia
+            // 
+            txtGiamGia.Location = new Point(206, 398);
+            txtGiamGia.Margin = new Padding(2);
+            txtGiamGia.Name = "txtGiamGia";
+            txtGiamGia.Size = new Size(83, 34);
+            txtGiamGia.TabIndex = 5;
+            txtGiamGia.Text = "0";
+            txtGiamGia.TextAlign = HorizontalAlignment.Right;
+            txtGiamGia.TextChanged += textBox4_TextChanged;
+            txtGiamGia.KeyPress += txtSlTrongKho_KeyPress;
+            // 
             // txtSlBan
             // 
             txtSlBan.Location = new Point(206, 339);
@@ -239,7 +251,7 @@
             txtMHD.Location = new Point(208, 55);
             txtMHD.Margin = new Padding(2);
             txtMHD.Name = "txtMHD";
-            txtMHD.Size = new Size(191, 34);
+            txtMHD.Size = new Size(192, 34);
             txtMHD.TabIndex = 5;
             txtMHD.TextChanged += textBox4_TextChanged;
             txtMHD.KeyPress += txtSlTrongKho_KeyPress;
@@ -280,7 +292,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(293, 401);
+            label10.Location = new Point(292, 401);
             label10.Margin = new Padding(2, 0, 2, 0);
             label10.Name = "label10";
             label10.Size = new Size(29, 27);
@@ -334,7 +346,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(503, 228);
+            label14.Location = new Point(502, 228);
             label14.Margin = new Padding(2, 0, 2, 0);
             label14.Name = "label14";
             label14.Size = new Size(136, 27);
@@ -354,7 +366,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(14, 287);
+            label6.Location = new Point(14, 288);
             label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
             label6.Size = new Size(129, 27);
@@ -364,7 +376,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(503, 110);
+            label3.Location = new Point(502, 110);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
             label3.Size = new Size(76, 27);
@@ -374,7 +386,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(503, 51);
+            label13.Location = new Point(502, 51);
             label13.Margin = new Padding(2, 0, 2, 0);
             label13.Name = "label13";
             label13.Size = new Size(120, 27);
@@ -424,7 +436,7 @@
             grbChucNang.Margin = new Padding(2);
             grbChucNang.Name = "grbChucNang";
             grbChucNang.Padding = new Padding(2);
-            grbChucNang.Size = new Size(989, 292);
+            grbChucNang.Size = new Size(988, 292);
             grbChucNang.TabIndex = 3;
             grbChucNang.TabStop = false;
             grbChucNang.Text = "Chức năng";
@@ -541,7 +553,7 @@
             // 
             lblTenTK.AutoSize = true;
             lblTenTK.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
-            lblTenTK.Location = new Point(873, 66);
+            lblTenTK.Location = new Point(872, 66);
             lblTenTK.Margin = new Padding(2, 0, 2, 0);
             lblTenTK.Name = "lblTenTK";
             lblTenTK.Size = new Size(108, 27);
@@ -555,11 +567,11 @@
             dgvChiTietDH.BackgroundColor = Color.WhiteSmoke;
             dgvChiTietDH.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvChiTietDH.Dock = DockStyle.Bottom;
-            dgvChiTietDH.Location = new Point(0, 679);
+            dgvChiTietDH.Location = new Point(0, 678);
             dgvChiTietDH.Margin = new Padding(2);
             dgvChiTietDH.Name = "dgvChiTietDH";
             dgvChiTietDH.RowHeadersWidth = 62;
-            dgvChiTietDH.Size = new Size(871, 238);
+            dgvChiTietDH.Size = new Size(872, 238);
             dgvChiTietDH.TabIndex = 4;
             dgvChiTietDH.CellClick += dgvChiTietDH_CellClick;
             // 
@@ -569,11 +581,11 @@
             dgvSanPham.BackgroundColor = Color.WhiteSmoke;
             dgvSanPham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSanPham.Dock = DockStyle.Fill;
-            dgvSanPham.Location = new Point(0, 214);
+            dgvSanPham.Location = new Point(0, 213);
             dgvSanPham.Margin = new Padding(2);
             dgvSanPham.Name = "dgvSanPham";
             dgvSanPham.RowHeadersWidth = 62;
-            dgvSanPham.Size = new Size(871, 438);
+            dgvSanPham.Size = new Size(872, 438);
             dgvSanPham.TabIndex = 10;
             dgvSanPham.CellClick += dgvSanPham_CellClick;
             // 
@@ -594,7 +606,7 @@
             label12.AutoSize = true;
             label12.Dock = DockStyle.Bottom;
             label12.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
-            label12.Location = new Point(0, 652);
+            label12.Location = new Point(0, 651);
             label12.Margin = new Padding(2, 0, 2, 0);
             label12.Name = "label12";
             label12.Size = new Size(173, 27);
@@ -606,6 +618,7 @@
             lblTong.AutoSize = true;
             lblTong.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTong.Location = new Point(11, 5);
+            lblTong.Margin = new Padding(2, 0, 2, 0);
             lblTong.Name = "lblTong";
             lblTong.Size = new Size(112, 28);
             lblTong.TabIndex = 13;
@@ -620,14 +633,16 @@
             panel3.Controls.Add(label11);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 131);
+            panel3.Margin = new Padding(2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(871, 83);
+            panel3.Size = new Size(872, 82);
             panel3.TabIndex = 14;
             // 
             // cbxDanhMuc
             // 
             cbxDanhMuc.FormattingEnabled = true;
             cbxDanhMuc.Location = new Point(571, 30);
+            cbxDanhMuc.Margin = new Padding(2);
             cbxDanhMuc.Name = "cbxDanhMuc";
             cbxDanhMuc.Size = new Size(245, 33);
             cbxDanhMuc.TabIndex = 13;
@@ -636,6 +651,7 @@
             // txtTenSp
             // 
             txtTenSp.Location = new Point(150, 31);
+            txtTenSp.Margin = new Padding(2);
             txtTenSp.Name = "txtTenSp";
             txtTenSp.Size = new Size(260, 31);
             txtTenSp.TabIndex = 12;
@@ -646,7 +662,7 @@
             label17.AutoSize = true;
             label17.BackColor = Color.White;
             label17.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
-            label17.Location = new Point(463, 31);
+            label17.Location = new Point(462, 31);
             label17.Margin = new Padding(2, 0, 2, 0);
             label17.Name = "label17";
             label17.Size = new Size(103, 27);
@@ -658,7 +674,7 @@
             label16.AutoSize = true;
             label16.BackColor = Color.White;
             label16.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
-            label16.Location = new Point(97, 32);
+            label16.Location = new Point(98, 32);
             label16.Margin = new Padding(2, 0, 2, 0);
             label16.Name = "label16";
             label16.Size = new Size(48, 27);
@@ -670,9 +686,10 @@
             panel2.Controls.Add(lblTongSL);
             panel2.Controls.Add(lblTong);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 917);
+            panel2.Location = new Point(0, 916);
+            panel2.Margin = new Padding(2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(871, 37);
+            panel2.Size = new Size(872, 38);
             panel2.TabIndex = 15;
             // 
             // lblTongSL
@@ -680,22 +697,11 @@
             lblTongSL.AutoSize = true;
             lblTongSL.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTongSL.Location = new Point(276, 5);
+            lblTongSL.Margin = new Padding(2, 0, 2, 0);
             lblTongSL.Name = "lblTongSL";
             lblTongSL.Size = new Size(92, 28);
             lblTongSL.TabIndex = 13;
             lblTongSL.Text = "Tổng SL:";
-            // 
-            // txtGiamGia
-            // 
-            txtGiamGia.Location = new Point(206, 398);
-            txtGiamGia.Margin = new Padding(2);
-            txtGiamGia.Name = "txtGiamGia";
-            txtGiamGia.Size = new Size(83, 34);
-            txtGiamGia.TabIndex = 5;
-            txtGiamGia.Text = "0";
-            txtGiamGia.TextAlign = HorizontalAlignment.Right;
-            txtGiamGia.TextChanged += textBox4_TextChanged;
-            txtGiamGia.KeyPress += txtSlTrongKho_KeyPress;
             // 
             // frmBanHang
             // 
