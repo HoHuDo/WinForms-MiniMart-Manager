@@ -16,6 +16,12 @@
     <Content Include="bin\Debug\net8.0-windows\Images\KhoGa.jpg" />
     <Content Include="bin\Debug\net8.0-windows\Images\NuocEpCam.jpg" />
     <Content Include="bin\Debug\net8.0-windows\Images\TaiNgheKhongDay.jpg" />
+    <Content Include="Images\AoPhongUnisex.jpg" />
+    <Content Include="Images\BanhQuy.jpg" />
+    <Content Include="Images\ButBiThienLong.jpg" />
+    <Content Include="Images\KhoGa.jpg" />
+    <Content Include="Images\NuocEpCam.jpg" />
+    <Content Include="Images\TaiNgheKhongDay.jpg" />
   </ItemGroup>
 
   <ItemGroup>
