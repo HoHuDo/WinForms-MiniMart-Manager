@@ -36,13 +36,13 @@ namespace MiniMart_Manager.DanhMuc
             chkHienMK = new CheckBox();
             panel1 = new Panel();
             panel2 = new Panel();
-            btnDangNhap = new Button();
             lblNhapLai = new Label();
             lblThoat = new Label();
             txtMatKhau = new TextBox();
             txtTaiKhoan = new TextBox();
             groupBox1 = new GroupBox();
             picThoat = new PictureBox();
+            btnDangNhap = new MiniMart_Manager.Classes.RoundedButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -96,6 +96,7 @@ namespace MiniMart_Manager.DanhMuc
             // chkHienMK
             // 
             chkHienMK.AutoSize = true;
+            chkHienMK.Cursor = Cursors.Hand;
             chkHienMK.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             chkHienMK.ForeColor = Color.DeepSkyBlue;
             chkHienMK.Location = new Point(362, 298);
@@ -122,23 +123,10 @@ namespace MiniMart_Manager.DanhMuc
             panel2.Size = new Size(433, 3);
             panel2.TabIndex = 8;
             // 
-            // btnDangNhap
-            // 
-            btnDangNhap.BackColor = Color.DeepSkyBlue;
-            btnDangNhap.Font = new Font("Segoe UI Emoji", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDangNhap.ForeColor = Color.Transparent;
-            btnDangNhap.Location = new Point(362, 359);
-            btnDangNhap.Name = "btnDangNhap";
-            btnDangNhap.Size = new Size(433, 48);
-            btnDangNhap.TabIndex = 2;
-            btnDangNhap.Text = "Đăng nhập";
-            btnDangNhap.UseVisualStyleBackColor = false;
-            btnDangNhap.Click += btnDangNhap_Click;
-            btnDangNhap.KeyPress += btnDangNhap_KeyPress;
-            // 
             // lblNhapLai
             // 
             lblNhapLai.AutoSize = true;
+            lblNhapLai.Cursor = Cursors.Hand;
             lblNhapLai.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Underline, GraphicsUnit.Point, 0);
             lblNhapLai.ForeColor = Color.DeepSkyBlue;
             lblNhapLai.Location = new Point(708, 300);
@@ -152,6 +140,7 @@ namespace MiniMart_Manager.DanhMuc
             // 
             lblThoat.AutoSize = true;
             lblThoat.BackColor = SystemColors.ButtonHighlight;
+            lblThoat.Cursor = Cursors.Hand;
             lblThoat.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblThoat.ForeColor = Color.FromArgb(255, 128, 128);
             lblThoat.Location = new Point(726, 425);
@@ -197,6 +186,7 @@ namespace MiniMart_Manager.DanhMuc
             // 
             // picThoat
             // 
+            picThoat.Cursor = Cursors.Hand;
             picThoat.Image = Properties.Resources.logout;
             picThoat.Location = new Point(702, 429);
             picThoat.Name = "picThoat";
@@ -206,19 +196,34 @@ namespace MiniMart_Manager.DanhMuc
             picThoat.TabStop = false;
             picThoat.Click += lblThoat_Click_1;
             // 
+            // btnDangNhap
+            // 
+            btnDangNhap.BackColor = Color.DeepSkyBlue;
+            btnDangNhap.Cursor = Cursors.Hand;
+            btnDangNhap.FlatAppearance.BorderSize = 0;
+            btnDangNhap.FlatStyle = FlatStyle.Flat;
+            btnDangNhap.Font = new Font("Segoe UI Emoji", 14F, FontStyle.Bold);
+            btnDangNhap.ForeColor = Color.White;
+            btnDangNhap.Location = new Point(362, 360);
+            btnDangNhap.Name = "btnDangNhap";
+            btnDangNhap.Size = new Size(433, 47);
+            btnDangNhap.TabIndex = 13;
+            btnDangNhap.Text = "Đăng nhập";
+            btnDangNhap.UseVisualStyleBackColor = false;
+            btnDangNhap.Click += btnDangNhap_Click;
+            // 
             // frmDangNhap
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(911, 514);
             ControlBox = false;
+            Controls.Add(btnDangNhap);
             Controls.Add(groupBox1);
             Controls.Add(txtTaiKhoan);
             Controls.Add(txtMatKhau);
             Controls.Add(lblThoat);
             Controls.Add(lblNhapLai);
-            Controls.Add(btnDangNhap);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(chkHienMK);
@@ -249,12 +254,12 @@ namespace MiniMart_Manager.DanhMuc
         private CheckBox chkHienMK;
         private Panel panel1;
         private Panel panel2;
-        private Button btnDangNhap;
         private Label lblNhapLai;
         private Label lblThoat;
         private TextBox txtMatKhau;
         private TextBox txtTaiKhoan;
         private GroupBox groupBox1;
         private PictureBox picThoat;
+        private Classes.RoundedButton btnDangNhap;
     }
 }

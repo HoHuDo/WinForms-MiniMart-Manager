@@ -15,13 +15,7 @@ namespace MiniMart_Manager.DanhMuc
         private void frmQLNhapHang_Load(object sender, EventArgs e)
         {
             lblTenTk.Text = GlobalData.Quyen + ": " + GlobalData.TenDangNhap;
-            DataTable dtPhieuNhap = dtBase.ReadData("Select * From PhieuNhap");
-            dgvPhieuNhap.DataSource = dtPhieuNhap;
-            dgvPhieuNhap.Columns[0].HeaderText = "Mã Phiếu Nhập";
-            dgvPhieuNhap.Columns[1].HeaderText = "Mã Nhà Cung Cấp";
-            dgvPhieuNhap.Columns[2].HeaderText = "Mã Mã Nhân Viên";
-            dgvPhieuNhap.Columns[3].HeaderText = "Ngày Nhập";
-            dgvPhieuNhap.Columns[4].HeaderText = "Tổng Tiền";
+
 
             cbxMaSP.DataSource = dtBase.ReadData("Select MaSanPham, TenSanPham From SanPham");
             cbxMaSP.DisplayMember = "TenSanPham";
@@ -35,9 +29,32 @@ namespace MiniMart_Manager.DanhMuc
             cbxMaNV.DisplayMember = "TenNhanVien";
             cbxMaNV.ValueMember = "MaNhanVien";
 
+            btnXoaCTPN.Enabled = false;
+            btnXoaPN.Enabled = false;
+
             cbxMaSP.SelectedIndex = -1;
             cbxMaNCC.SelectedIndex = -1;
             cbxMaNV.SelectedIndex = -1;
+            btnSua.Enabled = false;
+
+            int thang = dtpLoc.Value.Month;
+            int nam = dtpLoc.Value.Year;
+            string start = new DateTime(nam, thang, 1).ToString("yyyyMMdd");
+            string end = new DateTime(nam, thang, 1).AddMonths(1).ToString("yyyyMMdd");
+            string sql = $@"
+                SELECT *
+                FROM PhieuNhap
+                WHERE NgayNhap >= '{start}'
+                  AND NgayNhap <  '{end}'";
+
+            DataTable dtPN = dtBase.ReadData(sql);
+
+            dgvPhieuNhap.DataSource = dtPN;
+            dgvPhieuNhap.Columns[0].HeaderText = "Mã Phiếu Nhập";
+            dgvPhieuNhap.Columns[1].HeaderText = "Mã Nhà Cung Cấp";
+            dgvPhieuNhap.Columns[2].HeaderText = "Mã Mã Nhân Viên";
+            dgvPhieuNhap.Columns[3].HeaderText = "Ngày Nhập";
+            dgvPhieuNhap.Columns[4].HeaderText = "Tổng Tiền";
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -67,6 +84,11 @@ namespace MiniMart_Manager.DanhMuc
                 cbxMaNV.Text = dtNV.Rows[0][0].ToString();
             else cbxMaNV.Text = "";
             isLoading = false;
+            btnThemPN.Enabled = false;
+            btnThemCTPN.Enabled = false;
+            btnXoaPN.Enabled = true;
+            btnXoaCTPN.Enabled = false;
+            btnSua.Enabled = true;
         }
 
         private void dgvPhieuNhap_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -88,6 +110,10 @@ namespace MiniMart_Manager.DanhMuc
             txtThanhTien.Text = dgvChiTietPN.CurrentRow.Cells[4].Value.ToString();
             txtTongTien.Text = dgvPhieuNhap.CurrentRow.Cells[4].Value.ToString();
             isLoading = false;
+            btnXoaCTPN.Enabled = true;
+            btnXoaPN.Enabled = false;
+            btnSua.Enabled = true;
+            btnThemCTPN.Enabled = true;
         }
 
         private void label11_Click(object sender, EventArgs e)
@@ -215,12 +241,7 @@ namespace MiniMart_Manager.DanhMuc
                     sql += " AND MaNhanVien = N'" + cbxMaNV.SelectedValue.ToString() + "'";
                     kq += "Nhân Viên: '" + cbxMaNV.Text + "' \n";
                 }
-                if (chkTimTheoNgay.Checked)
-                {
-                    string ngayNhap = dtpNgayNhap.Value.ToString("yyyy-MM-dd");
-                    sql += " AND CONVERT(DATE, NgayNhap) = '" + ngayNhap + "'";
-                    kq += "Ngày Nhập: '" + ngayNhap + "' \n";
-                }
+
                 DataTable dtResult = dtBase.ReadData(sql);
                 dgvPhieuNhap.DataSource = dtResult;
                 if (dtResult.Rows.Count > 0)
@@ -472,6 +493,13 @@ namespace MiniMart_Manager.DanhMuc
                 cbxMaSP.Focus();
                 return;
             }
+            DataTable dtPN = dtBase.ReadData("Select * From PhieuNhap Where MaPhieuNhap=N'" + txtMaPN.Text + "'");
+            if (dtPN.Rows.Count == 0)
+            {
+                MessageBox.Show("Phiếu nhập không tồn tại, bạn phải tạo phiếu nhập trước!");
+                txtMaPN.Focus();
+                return;
+            }
             dtBase.UpdateData("Insert into ChiTietPhieuNhap(MaPhieuNhap, MaSanPham, SoLuongNhap, DonGiaNhap, ThanhTien) values(N'"
                 + txtMaPN.Text
                 + "', N'"
@@ -486,7 +514,7 @@ namespace MiniMart_Manager.DanhMuc
             DataTable dtTongTien = dtBase.ReadData("Select SUM(ThanhTien) From ChiTietPhieuNhap Where MaPhieuNhap=N'" + txtMaPN.Text + "';");
             dtBase.UpdateData("Update PhieuNhap set TongTien =N'" + dtTongTien.Rows[0][0].ToString() + "' Where MaPhieuNhap=N'" + txtMaPN.Text + "';");
             DataTable dtTongSL = dtBase.ReadData("Select SUM(SoLuongNhap) From ChiTietPhieuNhap Where MaSanPham='" + cbxMaSP.SelectedValue.ToString() + "'");
-            dtBase.UpdateData("Update SanPham Set SoLuongTon=N'" + dtTongSL.Rows[0][0].ToString() + "' Where MaSanPham=N'" + cbxMaSP.SelectedValue.ToString() + "';");
+            dtBase.UpdateData("Update SanPham Set SoLuongTon=N'" + dtTongSL.Rows[0][0].ToString() + "',GiaNhap='" + txtDonGia.Text + "' Where MaSanPham=N'" + cbxMaSP.SelectedValue.ToString() + "';");
             MessageBox.Show("Thêm chi tiết phiếu nhập thành công!");
             LoadChiTietPhieuNhap(txtMaPN.Text);
             ResetValues();
@@ -571,6 +599,38 @@ namespace MiniMart_Manager.DanhMuc
             {
                 e.Handled = true;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            btnXoaPN.Enabled = false;
+            btnXoaCTPN.Enabled = false;
+            btnSua.Enabled = false;
+            btnThemPN.Enabled = true;
+            btnThemCTPN.Enabled = true;
+            txtMaPN.Focus();
+        }
+
+        private void dtpLoc_ValueChanged(object sender, EventArgs e)
+        {
+            int thang = dtpLoc.Value.Month;
+            int nam = dtpLoc.Value.Year;
+            string start = new DateTime(nam, thang, 1).ToString("yyyyMMdd");
+            string end = new DateTime(nam, thang, 1).AddMonths(1).ToString("yyyyMMdd");
+            string sql = $@"
+                SELECT *
+                FROM PhieuNhap
+                WHERE NgayNhap >= '{start}'
+                  AND NgayNhap <  '{end}'";
+
+            DataTable dtPN = dtBase.ReadData(sql);
+
+            dgvPhieuNhap.DataSource = dtPN;
+            dgvPhieuNhap.Columns[0].HeaderText = "Mã Phiếu Nhập";
+            dgvPhieuNhap.Columns[1].HeaderText = "Mã Nhà Cung Cấp";
+            dgvPhieuNhap.Columns[2].HeaderText = "Mã Mã Nhân Viên";
+            dgvPhieuNhap.Columns[3].HeaderText = "Ngày Nhập";
+            dgvPhieuNhap.Columns[4].HeaderText = "Tổng Tiền";
         }
     }
 }

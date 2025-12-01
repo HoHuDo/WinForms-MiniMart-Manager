@@ -1,12 +1,17 @@
-﻿
-using MiniMart_Manager.Classes;
+﻿using MiniMart_Manager.Classes;
 using System.Data;
 using Excel = Microsoft.Office.Interop.Excel;
+
 namespace MiniMart_Manager.DanhMuc
 {
     public partial class frmNhaCungCap : Form
     {
         ProcessDatabase dtBase = new ProcessDatabase();
+        int pageSize = 10;
+        int pageIndex = 1;
+        int totalPages = 0;
+        int totalRecords = 0;
+
         public frmNhaCungCap()
         {
             InitializeComponent();
@@ -19,27 +24,65 @@ namespace MiniMart_Manager.DanhMuc
                 btnThem.Enabled = false;
                 btnSua.Enabled = false;
                 btnXoa.Enabled = false;
+                btnBoQua.Enabled = false;
             }
             lblTenTK.Text = GlobalData.Quyen + ": " + GlobalData.TenDangNhap;
-            dgvNhaCC.DataSource = dtBase.ReadData("Select * From NhaCungCap");
+
+            CalculatePagination();
+            LoadData();
+
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
+        }
+
+        void CalculatePagination()
+        {
+            string tenNCC = txtTimTen.Text.Trim();
+            totalRecords = dtBase.CountNhaCungCap(tenNCC);
+            totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+
+            if (totalPages == 0) pageIndex = 1;
+            lblTongSo.Text = "Tổng Số Nhà Cung Cấp: " + totalRecords.ToString();
+        }
+
+        void LoadData()
+        {
+            int offset = (pageIndex - 1) * pageSize;
+            string tenNCC = txtTimTen.Text.Trim();
+
+            DataTable dt = dtBase.ReadPagedNhaCungCap(offset, pageSize, tenNCC);
+            dgvNhaCC.DataSource = dt;
+
             dgvNhaCC.Columns[0].HeaderText = "Mã Nhà Cung Cấp";
             dgvNhaCC.Columns[1].HeaderText = "Tên Nhà Cung Cấp";
             dgvNhaCC.Columns[2].HeaderText = "Địa Chỉ";
             dgvNhaCC.Columns[3].HeaderText = "Số Điện Thoại";
+            UpdateUI();
         }
 
+        void UpdateUI()
+        {
+            lblCurrentPage.Text = $"Trang {pageIndex} / {totalPages}";
+            btnFirstPage.Enabled = btnPrePage.Enabled = (pageIndex > 1);
+            btnNextPage.Enabled = btnLastPage.Enabled = (pageIndex < totalPages);
+        }
         private void dgvNhaCC_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtMaNCC.Text = dgvNhaCC.CurrentRow.Cells[0].Value.ToString();
-            txtTenNCC.Text = dgvNhaCC.CurrentRow.Cells[1].Value.ToString();
-            txtDiaChi.Text = dgvNhaCC.CurrentRow.Cells[2].Value.ToString();
-            txtSDT.Text = dgvNhaCC.CurrentRow.Cells[3].Value.ToString();
+            if (e.RowIndex >= 0 && e.RowIndex < dgvNhaCC.Rows.Count - 1)
+            {
+                txtMaNCC.Text = dgvNhaCC.CurrentRow.Cells[0].Value.ToString();
+                txtTenNCC.Text = dgvNhaCC.CurrentRow.Cells[1].Value.ToString();
+                txtDiaChi.Text = dgvNhaCC.CurrentRow.Cells[2].Value.ToString();
+                txtSDT.Text = dgvNhaCC.CurrentRow.Cells[3].Value.ToString();
 
+                btnThem.Enabled = false;
+                btnXoa.Enabled = true;
+                btnSua.Enabled = true;
+            }
         }
 
         private void txtSDT_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void txtSDT_KeyPress(object sender, KeyPressEventArgs e)
@@ -52,30 +95,11 @@ namespace MiniMart_Manager.DanhMuc
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (txtMaNCC.Text.Trim() == "")
-            {
-                MessageBox.Show("Bạn phải nhập mã nhà cung cấp!");
-                txtMaNCC.Focus();
-                return;
-            }
-            if (txtTenNCC.Text.Trim() == "")
-            {
-                MessageBox.Show("Bạn phải nhập tên nhà cung cấp!");
-                txtTenNCC.Focus();
-                return;
-            }
-            if (txtDiaChi.Text.Trim() == "")
-            {
-                MessageBox.Show("Bạn phải nhập địa chỉ nhà cung cấp!");
-                txtDiaChi.Focus();
-                return;
-            }
-            if (txtSDT.Text.Trim() == "")
-            {
-                MessageBox.Show("Bạn phải nhập số điện thoại nhà cung cấp!");
-                txtSDT.Focus();
-                return;
-            }
+            if (txtMaNCC.Text.Trim() == "") { MessageBox.Show("Bạn phải nhập mã nhà cung cấp!"); txtMaNCC.Focus(); return; }
+            if (txtTenNCC.Text.Trim() == "") { MessageBox.Show("Bạn phải nhập tên nhà cung cấp!"); txtTenNCC.Focus(); return; }
+            if (txtDiaChi.Text.Trim() == "") { MessageBox.Show("Bạn phải nhập địa chỉ nhà cung cấp!"); txtDiaChi.Focus(); return; }
+            if (txtSDT.Text.Trim() == "") { MessageBox.Show("Bạn phải nhập số điện thoại nhà cung cấp!"); txtSDT.Focus(); return; }
+
             DataTable dt = dtBase.ReadData("Select * From NhaCungCap Where MaNhaCungCap=N'" + txtMaNCC.Text + "'");
             if (dt.Rows.Count > 0)
             {
@@ -87,10 +111,13 @@ namespace MiniMart_Manager.DanhMuc
             {
                 dtBase.UpdateData("Insert into NhaCungCap(MaNhaCungCap, TenNhaCungCap, DiaChi, SoDienThoai) values(N'" + txtMaNCC.Text + "', N'" + txtTenNCC.Text + "', N'" + txtDiaChi.Text + "', N'" + txtSDT.Text + "')");
                 MessageBox.Show("Thêm nhà cung cấp thành công!");
-                frmNhacCungCap_Load(sender, e);
+
+                CalculatePagination();
+                LoadData();
                 ResetValues();
             }
         }
+
         void ResetValues()
         {
             txtMaNCC.Text = "";
@@ -102,7 +129,7 @@ namespace MiniMart_Manager.DanhMuc
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (dgvNhaCC.Rows.Count == null)
+            if (dgvNhaCC.CurrentRow == null)
             {
                 MessageBox.Show("Bạn phải chọn phần tử đế sửa!");
                 return;
@@ -125,14 +152,15 @@ namespace MiniMart_Manager.DanhMuc
                 }
                 dtBase.UpdateData("Update NhaCungCap Set MaNhaCungCap=N'" + txtMaNCC.Text + "', TenNhaCungCap=N'" + txtTenNCC.Text + "', DiaChi=N'" + txtDiaChi.Text + "', SoDienThoai=N'" + txtSDT.Text + "' Where MaNhaCungCap=N'" + dgvNhaCC.CurrentRow.Cells[0].Value.ToString() + "'");
                 MessageBox.Show("Cập nhật nhà cung cấp thành công!");
-                frmNhacCungCap_Load(sender, e);
+
+                LoadData();
                 ResetValues();
             }
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (dgvNhaCC.Rows.Count == null)
+            if (dgvNhaCC.CurrentRow == null)
             {
                 MessageBox.Show("Bạn phải chọn phần tử để xóa!");
                 return;
@@ -140,8 +168,11 @@ namespace MiniMart_Manager.DanhMuc
             else
             {
                 dtBase.UpdateData("Delete From NhaCungCap Where MaNhaCungCap=N'" + dgvNhaCC.CurrentRow.Cells[0].Value.ToString() + "'");
-                frmNhacCungCap_Load(sender, e);
                 MessageBox.Show("Xóa nhà cung cấp thành công!");
+
+                CalculatePagination();
+                LoadData();
+                ResetValues();
             }
         }
 
@@ -174,21 +205,17 @@ namespace MiniMart_Manager.DanhMuc
             tenTruong.Range["D4"].Value = "Số Điện Thoại";
 
             string R = dgvNhaCC.Rows.Count + 5 + "";
-
             tenTruong.Range["A4:D4"].ColumnWidth = 30;
-
             tenTruong.Range["A4:D" + R].VerticalAlignment = Excel.XlVAlign.xlVAlignTop;
             tenTruong.Range["A4:D" + R].Columns.WrapText = true;
             int Hang = 5;
             for (int i = 0; i < dgvNhaCC.Rows.Count - 1; i++)
             {
-
                 tenTruong.Range["A" + Hang.ToString()].Value = dgvNhaCC.Rows[i].Cells[0].Value.ToString();
                 tenTruong.Range["B" + Hang.ToString()].Value = dgvNhaCC.Rows[i].Cells[1].Value.ToString();
                 tenTruong.Range["C" + Hang.ToString()].Value = dgvNhaCC.Rows[i].Cells[2].Value.ToString();
                 tenTruong.Range["D" + Hang.ToString()].Value = dgvNhaCC.Rows[i].Cells[3].Value.ToString();
                 Hang++;
-
             }
 
             Excel.Range range = exSheet.Range[exSheet.Cells[4, 1], exSheet.Cells[int.Parse(R) - 2, 4]];
@@ -205,6 +232,56 @@ namespace MiniMart_Manager.DanhMuc
                 MessageBox.Show("Xuất File Excel thành công");
             }
             exApp.Quit();
+        }
+
+        private void btnBoQua_Click(object sender, EventArgs e)
+        {
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
+            btnThem.Enabled = true;
+            ResetValues();
+        }
+
+        private void txtTimTen_TextChanged(object sender, EventArgs e)
+        {
+            pageIndex = 1;
+            CalculatePagination();
+            LoadData();
+        }
+
+        private void btnTrangDau_Click(object sender, EventArgs e)
+        {
+            pageIndex = 1;
+            LoadData();
+        }
+
+        private void btnTruoc_Click(object sender, EventArgs e)
+        {
+            if (pageIndex > 1)
+            {
+                pageIndex--;
+                LoadData();
+            }
+        }
+
+        private void btnSau_Click(object sender, EventArgs e)
+        {
+            if (pageIndex < totalPages)
+            {
+                pageIndex++;
+                LoadData();
+            }
+        }
+
+        private void btnTrangCuoi_Click(object sender, EventArgs e)
+        {
+            pageIndex = totalPages;
+            LoadData();
+        }
+
+        private void grbChucNang_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

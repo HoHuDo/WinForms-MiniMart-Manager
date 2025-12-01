@@ -1,11 +1,17 @@
 ﻿using MiniMart_Manager.Classes;
 using System.Data;
 using Excel = Microsoft.Office.Interop.Excel;
+
 namespace MiniMart_Manager.DanhMuc
 {
     public partial class frmQLKhachHang : Form
     {
         ProcessDatabase dtBase = new ProcessDatabase();
+        int pageSize = 10;
+        int pageIndex = 1;
+        int totalPages = 0;
+        int totalRecords = 0;
+
         public frmQLKhachHang()
         {
             InitializeComponent();
@@ -14,12 +20,81 @@ namespace MiniMart_Manager.DanhMuc
         private void frmQLKhachHang_Load(object sender, EventArgs e)
         {
             lblTenTK.Text = GlobalData.Quyen + ": " + GlobalData.TenDangNhap;
-            dgvKhachHang.DataSource = dtBase.ReadData("Select * From KhachHang");
+            CalculatePagination();
+            LoadData();
             dgvKhachHang.Columns[0].HeaderText = "Mã Khách Hàng";
             dgvKhachHang.Columns[1].HeaderText = "Tên Khách Hàng";
             dgvKhachHang.Columns[2].HeaderText = "Địa Chỉ";
             dgvKhachHang.Columns[3].HeaderText = "Số Điện Thoại";
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
+        }
 
+        void CalculatePagination()
+        {
+            string tenKhach = txtTimTen.Text.Trim();
+            string sdt = txtTimSĐT.Text.Trim();
+
+            totalRecords = dtBase.CountRecordsWithFilter(tenKhach, sdt);
+            totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+
+            if (totalPages == 0) pageIndex = 1;
+        }
+
+        void LoadData()
+        {
+            int offset = (pageIndex - 1) * pageSize;
+            string tenKhach = txtTimTen.Text.Trim();
+            string sdt = txtTimSĐT.Text.Trim();
+
+            DataTable dt = dtBase.ReadPagedDataWithFilter(offset, pageSize, tenKhach, sdt);
+
+            dgvKhachHang.DataSource = dt;
+            UpdateUI();
+        }
+
+        void UpdateUI()
+        {
+            lblCurrentPage.Text = $"Trang {pageIndex} / {totalPages}";
+            btnFirstPage.Enabled = btnPrePage.Enabled = (pageIndex > 1);
+            btnNextPage.Enabled = btnLastPage.Enabled = (pageIndex < totalPages);
+        }
+
+        private void btnTrangDau_Click(object sender, EventArgs e)
+        {
+            pageIndex = 1;
+            LoadData();
+        }
+
+        private void btnTruoc_Click(object sender, EventArgs e)
+        {
+            if (pageIndex > 1)
+            {
+                pageIndex--;
+                LoadData();
+            }
+        }
+
+        private void btnSau_Click(object sender, EventArgs e)
+        {
+            if (pageIndex < totalPages)
+            {
+                pageIndex++;
+                LoadData();
+            }
+        }
+
+        private void btnTrangCuoi_Click(object sender, EventArgs e)
+        {
+            pageIndex = totalPages;
+            LoadData();
+        }
+
+        private void txtTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            pageIndex = 1;
+            CalculatePagination();
+            LoadData();
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -29,10 +104,16 @@ namespace MiniMart_Manager.DanhMuc
 
         private void dgvKhachHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtMaKH.Text = dgvKhachHang.CurrentRow.Cells[0].Value.ToString();
-            txtHovaTen.Text = dgvKhachHang.CurrentRow.Cells[1].Value.ToString();
-            txtDiaChi.Text = dgvKhachHang.CurrentRow.Cells[2].Value.ToString();
-            txtSDT.Text = dgvKhachHang.CurrentRow.Cells[3].Value.ToString();
+            if (e.RowIndex >= 0 && e.RowIndex < dgvKhachHang.Rows.Count - 1)
+            {
+                txtMaKH.Text = dgvKhachHang.CurrentRow.Cells[0].Value.ToString();
+                txtHovaTen.Text = dgvKhachHang.CurrentRow.Cells[1].Value.ToString();
+                txtDiaChi.Text = dgvKhachHang.CurrentRow.Cells[2].Value.ToString();
+                txtSDT.Text = dgvKhachHang.CurrentRow.Cells[3].Value.ToString();
+            }
+            btnThem.Enabled = false;
+            btnXoa.Enabled = true;
+            btnSua.Enabled = true;
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -70,11 +151,13 @@ namespace MiniMart_Manager.DanhMuc
                 return;
             }
             dtBase.UpdateData("Insert into KhachHang(MaKhachHang, TenKhachHang, DiaChi, SoDienThoai) values(N'" + txtMaKH.Text + "', N'" + txtHovaTen.Text + "', N'" + txtDiaChi.Text + "', N'" + txtSDT.Text + "')");
-            frmQLKhachHang_Load(sender, e);
-            ResetValues();
-            MessageBox.Show("Cập nhật thàng công");
 
+            CalculatePagination();
+            LoadData();
+            ResetValues();
+            MessageBox.Show("Cập nhật thành công");
         }
+
         void ResetValues()
         {
             txtMaKH.Clear();
@@ -86,14 +169,13 @@ namespace MiniMart_Manager.DanhMuc
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (dgvKhachHang.Rows.Count == null)
+            if (dgvKhachHang.CurrentRow == null)
             {
                 MessageBox.Show("Bạn phải chọn phần tử để sửa");
                 return;
             }
             else
             {
-
                 bool k = true;
                 DataTable dtMKH = dtBase.ReadData("Select * From KhachHang Where MaKhachHang=N'" + txtMaKH.Text + "'");
                 if (dtMKH.Rows.Count > 0 && txtMaKH.Text != dgvKhachHang.CurrentRow.Cells[0].Value.ToString())
@@ -102,7 +184,6 @@ namespace MiniMart_Manager.DanhMuc
                     txtMaKH.Clear();
                     txtMaKH.Focus();
                     return;
-
                 }
                 DataTable dtHd = dtBase.ReadData("Select * from HoaDon Where MaKhachHang=N'" + dgvKhachHang.CurrentRow.Cells[0].Value.ToString() + "'");
                 if (txtMaKH.Text != dgvKhachHang.CurrentRow.Cells[0].Value.ToString())
@@ -116,13 +197,12 @@ namespace MiniMart_Manager.DanhMuc
                 if (k)
                 {
                     dtBase.UpdateData("Update KhachHang Set MaKhachHang=N'" + txtMaKH.Text + "', TenKhachHang=N'" + txtHovaTen.Text + "', DiaChi=N'" + txtDiaChi.Text + "', SoDienThoai=N'" + txtSDT.Text + "' Where MaKhachHang=N'" + dgvKhachHang.CurrentRow.Cells[0].Value.ToString() + "'");
-                    frmQLKhachHang_Load(sender, e);
+
+                    LoadData();
                     ResetValues();
-                    MessageBox.Show("Cập nhật thàng công");
+                    MessageBox.Show("Cập nhật thành công");
                 }
-
             }
-
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -140,7 +220,9 @@ namespace MiniMart_Manager.DanhMuc
                 else
                 {
                     dtBase.UpdateData("delete KhachHang where MaKhachHang=N'" + dgvKhachHang.CurrentRow.Cells[0].Value.ToString() + "';");
-                    frmQLKhachHang_Load(sender, e);
+
+                    CalculatePagination();
+                    LoadData();
                     ResetValues();
                     MessageBox.Show("Xóa thành công");
                 }
@@ -186,13 +268,11 @@ namespace MiniMart_Manager.DanhMuc
             int Hang = 5;
             for (int i = 0; i < dgvKhachHang.Rows.Count - 1; i++)
             {
-
                 tenTruong.Range["A" + Hang.ToString()].Value = dgvKhachHang.Rows[i].Cells[0].Value.ToString();
                 tenTruong.Range["B" + Hang.ToString()].Value = dgvKhachHang.Rows[i].Cells[1].Value.ToString();
                 tenTruong.Range["C" + Hang.ToString()].Value = dgvKhachHang.Rows[i].Cells[2].Value.ToString();
                 tenTruong.Range["D" + Hang.ToString()].Value = dgvKhachHang.Rows[i].Cells[3].Value.ToString();
                 Hang++;
-
             }
             Excel.Range range = exSheet.Range[exSheet.Cells[4, 1], exSheet.Cells[int.Parse(R) - 2, 4]];
             range.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
@@ -208,11 +288,37 @@ namespace MiniMart_Manager.DanhMuc
                 MessageBox.Show("Xuất File Excel thành công");
             }
             exApp.Quit();
+        }
 
+        private void txtTimSĐT_TextChanged(object sender, EventArgs e)
+        {
+            txtTimKiem_TextChanged(sender, e);
+        }
+
+        private void txtTimTen_TextChanged(object sender, EventArgs e)
+        {
+            txtTimKiem_TextChanged(sender, e);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
 
         }
 
-        private void txtSDT_TextChanged(object sender, EventArgs e)
+        private void btnBoQua_Click(object sender, EventArgs e)
+        {
+            btnThem.Enabled = true;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
+            ResetValues();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void grbThongTin_Enter(object sender, EventArgs e)
         {
 
         }

@@ -44,10 +44,10 @@
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            button1 = new Button();
             pictureBox1 = new PictureBox();
             lblThoat = new Label();
             chkPass = new CheckBox();
+            roundedButton1 = new MiniMart_Manager.Classes.RoundedButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -57,7 +57,7 @@
             lblTenTK.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
             lblTenTK.Location = new Point(70, 221);
             lblTenTK.Name = "lblTenTK";
-            lblTenTK.Size = new Size(111, 22);
+            lblTenTK.Size = new Size(131, 27);
             lblTenTK.TabIndex = 0;
             lblTenTK.Text = "Tên tài khoản";
             // 
@@ -67,7 +67,7 @@
             lblMatKhau.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
             lblMatKhau.Location = new Point(70, 291);
             lblMatKhau.Name = "lblMatKhau";
-            lblMatKhau.Size = new Size(143, 22);
+            lblMatKhau.Size = new Size(167, 27);
             lblMatKhau.TabIndex = 0;
             lblMatKhau.Text = "Mật khẩu hiện tại";
             lblMatKhau.Click += label2_Click;
@@ -78,7 +78,7 @@
             lblMatKhauMoi.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
             lblMatKhauMoi.Location = new Point(70, 361);
             lblMatKhauMoi.Name = "lblMatKhauMoi";
-            lblMatKhauMoi.Size = new Size(116, 22);
+            lblMatKhauMoi.Size = new Size(136, 27);
             lblMatKhauMoi.TabIndex = 0;
             lblMatKhauMoi.Text = "Mật khẩu mới";
             lblMatKhauMoi.Click += label2_Click;
@@ -89,7 +89,7 @@
             lblConfirm.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold);
             lblConfirm.Location = new Point(70, 431);
             lblConfirm.Name = "lblConfirm";
-            lblConfirm.Size = new Size(157, 22);
+            lblConfirm.Size = new Size(182, 27);
             lblConfirm.TabIndex = 0;
             lblConfirm.Text = "Xác nhận mật khẩu";
             lblConfirm.Click += label2_Click;
@@ -133,7 +133,7 @@
             txtTK.ForeColor = SystemColors.HotTrack;
             txtTK.Location = new Point(286, 221);
             txtTK.Name = "txtTK";
-            txtTK.Size = new Size(355, 23);
+            txtTK.Size = new Size(355, 27);
             txtTK.TabIndex = 0;
             // 
             // txtMK
@@ -143,7 +143,7 @@
             txtMK.ForeColor = Color.FromArgb(255, 128, 128);
             txtMK.Location = new Point(286, 290);
             txtMK.Name = "txtMK";
-            txtMK.Size = new Size(355, 23);
+            txtMK.Size = new Size(355, 27);
             txtMK.TabIndex = 1;
             // 
             // txtMKMoi
@@ -153,7 +153,7 @@
             txtMKMoi.ForeColor = Color.FromArgb(0, 192, 0);
             txtMKMoi.Location = new Point(286, 361);
             txtMKMoi.Name = "txtMKMoi";
-            txtMKMoi.Size = new Size(355, 23);
+            txtMKMoi.Size = new Size(355, 27);
             txtMKMoi.TabIndex = 2;
             // 
             // txtXacNhan
@@ -163,7 +163,7 @@
             txtXacNhan.ForeColor = Color.FromArgb(0, 192, 0);
             txtXacNhan.Location = new Point(286, 429);
             txtXacNhan.Name = "txtXacNhan";
-            txtXacNhan.Size = new Size(355, 23);
+            txtXacNhan.Size = new Size(355, 27);
             txtXacNhan.TabIndex = 3;
             // 
             // label1
@@ -171,7 +171,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(265, 218);
             label1.Name = "label1";
-            label1.Size = new Size(14, 22);
+            label1.Size = new Size(17, 27);
             label1.TabIndex = 0;
             label1.Text = ":";
             label1.Click += label1_Click;
@@ -181,7 +181,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(265, 289);
             label2.Name = "label2";
-            label2.Size = new Size(14, 22);
+            label2.Size = new Size(17, 27);
             label2.TabIndex = 0;
             label2.Text = ":";
             label2.Click += label1_Click;
@@ -191,7 +191,7 @@
             label3.AutoSize = true;
             label3.Location = new Point(265, 361);
             label3.Name = "label3";
-            label3.Size = new Size(14, 22);
+            label3.Size = new Size(17, 27);
             label3.TabIndex = 0;
             label3.Text = ":";
             label3.Click += label1_Click;
@@ -201,23 +201,10 @@
             label4.AutoSize = true;
             label4.Location = new Point(265, 429);
             label4.Name = "label4";
-            label4.Size = new Size(14, 22);
+            label4.Size = new Size(17, 27);
             label4.TabIndex = 0;
             label4.Text = ":";
             label4.Click += label1_Click;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.DeepSkyBlue;
-            button1.Font = new Font("Segoe UI Emoji", 14F, FontStyle.Bold);
-            button1.ForeColor = Color.Transparent;
-            button1.Location = new Point(70, 507);
-            button1.Name = "button1";
-            button1.Size = new Size(614, 56);
-            button1.TabIndex = 4;
-            button1.Text = "Đổi Mật Khẩu";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
             // 
             // pictureBox1
             // 
@@ -232,12 +219,13 @@
             // lblThoat
             // 
             lblThoat.AutoSize = true;
+            lblThoat.Cursor = Cursors.Hand;
             lblThoat.ForeColor = Color.LightCoral;
             lblThoat.Image = Properties.Resources.logout;
             lblThoat.ImageAlign = ContentAlignment.MiddleLeft;
-            lblThoat.Location = new Point(603, 593);
+            lblThoat.Location = new Point(586, 599);
             lblThoat.Name = "lblThoat";
-            lblThoat.Size = new Size(81, 22);
+            lblThoat.Size = new Size(98, 27);
             lblThoat.TabIndex = 5;
             lblThoat.Text = "       Thoát";
             lblThoat.Click += lblThoat_Click_2;
@@ -245,22 +233,40 @@
             // chkPass
             // 
             chkPass.AutoSize = true;
+            chkPass.Cursor = Cursors.Hand;
             chkPass.Location = new Point(74, 475);
             chkPass.Name = "chkPass";
             chkPass.RightToLeft = RightToLeft.Yes;
-            chkPass.Size = new Size(144, 26);
+            chkPass.Size = new Size(170, 31);
             chkPass.TabIndex = 6;
             chkPass.Text = "HIện mật khẩu";
             chkPass.UseVisualStyleBackColor = true;
             chkPass.CheckedChanged += chkPass_CheckedChanged;
             // 
+            // roundedButton1
+            // 
+            roundedButton1.BackColor = Color.DeepSkyBlue;
+            roundedButton1.Cursor = Cursors.Hand;
+            roundedButton1.FlatAppearance.BorderSize = 0;
+            roundedButton1.FlatStyle = FlatStyle.Flat;
+            roundedButton1.Font = new Font("Segoe UI Emoji", 14F, FontStyle.Bold);
+            roundedButton1.ForeColor = SystemColors.ButtonHighlight;
+            roundedButton1.Location = new Point(74, 525);
+            roundedButton1.Name = "roundedButton1";
+            roundedButton1.Size = new Size(610, 54);
+            roundedButton1.TabIndex = 7;
+            roundedButton1.Text = "Đổi Mật Khẩu";
+            roundedButton1.UseVisualStyleBackColor = false;
+            roundedButton1.Click += button1_Click;
+            // 
             // frmDoiMatKhau
             // 
-            AutoScaleDimensions = new SizeF(10F, 22F);
+            AutoScaleDimensions = new SizeF(11F, 27F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(746, 673);
+            ClientSize = new Size(746, 649);
             ControlBox = false;
+            Controls.Add(roundedButton1);
             Controls.Add(chkPass);
             Controls.Add(lblThoat);
             Controls.Add(pictureBox1);
@@ -268,7 +274,6 @@
             Controls.Add(label3);
             Controls.Add(label1);
             Controls.Add(label2);
-            Controls.Add(button1);
             Controls.Add(txtXacNhan);
             Controls.Add(txtMKMoi);
             Controls.Add(txtMK);
@@ -308,9 +313,9 @@
         private Label label2;
         private Label label3;
         private Label label4;
-        private Button button1;
         private PictureBox pictureBox1;
         private Label lblThoat;
         private CheckBox chkPass;
+        private Classes.RoundedButton roundedButton1;
     }
 }

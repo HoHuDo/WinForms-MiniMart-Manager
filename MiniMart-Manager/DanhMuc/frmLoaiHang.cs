@@ -26,6 +26,9 @@ namespace MiniMart_Manager.DanhMuc
             txtMaLH.Text = dgvLoaiHang.CurrentRow.Cells[0].Value.ToString();
             txtTenLH.Text = dgvLoaiHang.CurrentRow.Cells[1].Value.ToString();
             txtMoTa.Text = dgvLoaiHang.CurrentRow.Cells[2].Value.ToString();
+            btnThem.Enabled = false;
+            btnXoa.Enabled = true;
+            btnSua.Enabled = true;
         }
 
         private void frmLoaiHang_Load(object sender, EventArgs e)
@@ -35,13 +38,17 @@ namespace MiniMart_Manager.DanhMuc
                 btnXoa.Enabled = false;
                 btnSua.Enabled = false;
                 btnThem.Enabled = false;
+                btnBoQua.Enabled = false;
             }
             lblTenTK.Text = GlobalData.Quyen + ": " + GlobalData.TenDangNhap;
             dgvLoaiHang.DataSource = dtBase.ReadData("Select * From LoaiHang");
             dgvLoaiHang.Columns[0].HeaderText = "Mã Loại Hàng";
             dgvLoaiHang.Columns[1].HeaderText = "Tên Loại Hàng";
             dgvLoaiHang.Columns[2].HeaderText = "Mô Tả";
-
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
+            DataTable dtTongSl = dtBase.ReadData("Select Count(*) from LoaiHang");
+            lblTongSLoai.Text = "Tổng Số Loại Hàng: " + dtTongSl.Rows[0][0].ToString();
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -213,6 +220,29 @@ namespace MiniMart_Manager.DanhMuc
                 MessageBox.Show("Xuất File Excel thành công");
             }
             exApp.Quit();
+        }
+
+        private void btnBoQua_Click(object sender, EventArgs e)
+        {
+            btnThem.Enabled = true;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
+            ResetValues();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTimTen_TextChanged(object sender, EventArgs e)
+        {
+            dgvLoaiHang.DataSource = dtBase.ReadData("Select * From LoaiHang Where TenLoaiHang Like N'%" + txtTimTen.Text + "%'"); ;
+
+            dgvLoaiHang.Columns[0].HeaderText = "Mã Loại Hàng";
+            dgvLoaiHang.Columns[1].HeaderText = "Tên Loại Hàng";
+            dgvLoaiHang.Columns[2].HeaderText = "Mô Tả";
+
         }
     }
 }

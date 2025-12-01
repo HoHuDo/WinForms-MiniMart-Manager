@@ -47,6 +47,11 @@ namespace MiniMart_Manager.DanhMuc
                             ORDER BY Hang ASC, TongTienBanDuoc DESC;";
 
             dgvTTNV.DataSource = dtBase.ReadData(sqlNV);
+            dgvTTNV.Columns[0].HeaderText = "Hạng";
+            dgvTTNV.Columns[1].HeaderText = "Mã Nhân Viên";
+            dgvTTNV.Columns[2].HeaderText = "Tên Nhân Viên";
+            dgvTTNV.Columns[3].HeaderText = "Tổng Doanh Số";
+
             string sqlNCC = @"WITH NhaCungCapChiPhi AS (
                             SELECT
                                 PN.MaNhaCungCap,
@@ -65,7 +70,16 @@ namespace MiniMart_Manager.DanhMuc
                             FROM  NhaCungCapChiPhi
                             ORDER BY  Hang ASC, TongChiNhapHang DESC;";
             dgvTCNCC.DataSource = dtBase.ReadData(sqlNCC);
+            dgvTCNCC.Columns[0].HeaderText = "Hạng";
+            dgvTCNCC.Columns[1].HeaderText = "Mã Nhà Cung Cấp";
+            dgvTCNCC.Columns[2].HeaderText = "Tên Nhà Cung Cấp";
+            dgvTCNCC.Columns[3].HeaderText = "Tổng Chi Phí";
             dgvTK.DataSource = dtBase.ReadData("SELECT RANK() OVER (ORDER BY SoLuongTon ASC) AS HangCanMua, MaSanPham, TenSanPham, SoLuongTon FROM SanPham ORDER BY SoLuongTon ASC;");
+            dgvTK.Columns[0].HeaderText = "Mức Ưu Tiên";
+            dgvTK.Columns[1].HeaderText = "Mã Sản Phẩm";
+            dgvTK.Columns[2].HeaderText = "Tên Sản Phẩm";
+            dgvTK.Columns[3].HeaderText = "Số Lượng Tồn";
+
             dgvTopSp.DataSource = dtBase.ReadData(@"WITH SanPhamBanChay AS (
                                                     SELECT
                                                         CT.MaSanPham,
@@ -83,6 +97,11 @@ namespace MiniMart_Manager.DanhMuc
                                                     MaSanPham,  TenSanPham,  TongSoLuongBan
                                                     FROM SanPhamBanChay
                                                     ORDER BY TongSoLuongBan DESC;");
+            dgvTopSp.Columns[0].HeaderText = "Hạng";
+            dgvTopSp.Columns[1].HeaderText = "Mã Sản Phẩm";
+            dgvTopSp.Columns[2].HeaderText = "Tên Sản Phẩm";
+            dgvTopSp.Columns[3].HeaderText = "Số Lượng Bán";
+
         }
 
         private void btnThoat_Click(object sender, EventArgs e)

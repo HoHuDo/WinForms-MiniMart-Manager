@@ -24,6 +24,9 @@ namespace MiniMart_Manager.DanhMuc
             dgvTaiKhoan.Columns[1].HeaderText = "Mật Khẩu";
             dgvTaiKhoan.Columns[2].HeaderText = "Quyền";
             dgvTaiKhoan.Columns[3].HeaderText = "Mã Nhân Viên";
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
+
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -216,6 +219,32 @@ namespace MiniMart_Manager.DanhMuc
             txtTenDN.Text = dgvTaiKhoan.CurrentRow.Cells[0].Value.ToString();
             txtMK.Text = dgvTaiKhoan.CurrentRow.Cells[1].Value.ToString();
             cbxQuyen.Text = dgvTaiKhoan.CurrentRow.Cells[2].Value.ToString();
+            btnThem.Enabled = false;
+            btnSua.Enabled = true;
+            btnXoa.Enabled = true;
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtTimMa_TextChanged(object sender, EventArgs e)
+        {
+            dgvTaiKhoan.DataSource = dtBase.ReadData("Select * from TaiKhoan where MaNhanVien Like N'%" + txtTimMa.Text + "%'");
+            dgvTaiKhoan.Columns[0].HeaderText = "Tên Tài Khoản";
+            dgvTaiKhoan.Columns[1].HeaderText = "Mật Khẩu";
+            dgvTaiKhoan.Columns[2].HeaderText = "Quyền";
+            dgvTaiKhoan.Columns[3].HeaderText = "Mã Nhân Viên";
+        }
+
+        private void btnBoQua_Click(object sender, EventArgs e)
+        {
+            btnThem.Enabled = true;
+            btnXoa.Enabled = false;
+            btnSua.Enabled = false;
+            ResetValues();
         }
     }
 }

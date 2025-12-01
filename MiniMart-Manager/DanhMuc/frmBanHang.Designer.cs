@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBanHang));
             grbThongTin = new GroupBox();
             btnSĐT = new Button();
@@ -63,7 +67,7 @@
             btnThoat = new Button();
             btnHuy = new Button();
             btnSua = new Button();
-            button1 = new Button();
+            btnThem = new Button();
             label1 = new Label();
             panel1 = new Panel();
             lblTenTK = new Label();
@@ -430,7 +434,7 @@
             grbChucNang.Controls.Add(btnThoat);
             grbChucNang.Controls.Add(btnHuy);
             grbChucNang.Controls.Add(btnSua);
-            grbChucNang.Controls.Add(button1);
+            grbChucNang.Controls.Add(btnThem);
             grbChucNang.Dock = DockStyle.Bottom;
             grbChucNang.Location = new Point(2, 529);
             grbChucNang.Margin = new Padding(2);
@@ -513,18 +517,18 @@
             btnSua.UseVisualStyleBackColor = true;
             btnSua.Click += btnSua_Click;
             // 
-            // button1
+            // btnThem
             // 
-            button1.Image = Properties.Resources.more;
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(134, 55);
-            button1.Margin = new Padding(2);
-            button1.Name = "button1";
-            button1.Size = new Size(178, 80);
-            button1.TabIndex = 0;
-            button1.Text = "Thêm";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += btnThem_Click;
+            btnThem.Image = Properties.Resources.more;
+            btnThem.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThem.Location = new Point(134, 55);
+            btnThem.Margin = new Padding(2);
+            btnThem.Name = "btnThem";
+            btnThem.Size = new Size(178, 80);
+            btnThem.TabIndex = 0;
+            btnThem.Text = "Thêm";
+            btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click;
             // 
             // label1
             // 
@@ -565,11 +569,30 @@
             dgvChiTietDH.AllowUserToAddRows = false;
             dgvChiTietDH.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvChiTietDH.BackgroundColor = Color.WhiteSmoke;
+            dgvChiTietDH.CellBorderStyle = DataGridViewCellBorderStyle.SunkenHorizontal;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.SeaShell;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(192, 192, 255);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvChiTietDH.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvChiTietDH.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Variable Text", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(192, 192, 255);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvChiTietDH.DefaultCellStyle = dataGridViewCellStyle2;
             dgvChiTietDH.Dock = DockStyle.Bottom;
+            dgvChiTietDH.EnableHeadersVisualStyles = false;
             dgvChiTietDH.Location = new Point(0, 678);
             dgvChiTietDH.Margin = new Padding(2);
             dgvChiTietDH.Name = "dgvChiTietDH";
+            dgvChiTietDH.RowHeadersVisible = false;
             dgvChiTietDH.RowHeadersWidth = 62;
             dgvChiTietDH.Size = new Size(872, 238);
             dgvChiTietDH.TabIndex = 4;
@@ -577,13 +600,33 @@
             // 
             // dgvSanPham
             // 
+            dgvSanPham.AllowUserToAddRows = false;
             dgvSanPham.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSanPham.BackgroundColor = Color.WhiteSmoke;
+            dgvSanPham.CellBorderStyle = DataGridViewCellBorderStyle.SunkenHorizontal;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.MistyRose;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI Variable Display Semib", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(255, 192, 192);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvSanPham.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvSanPham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(255, 192, 192);
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgvSanPham.DefaultCellStyle = dataGridViewCellStyle4;
             dgvSanPham.Dock = DockStyle.Fill;
+            dgvSanPham.EnableHeadersVisualStyles = false;
             dgvSanPham.Location = new Point(0, 213);
             dgvSanPham.Margin = new Padding(2);
             dgvSanPham.Name = "dgvSanPham";
+            dgvSanPham.RowHeadersVisible = false;
             dgvSanPham.RowHeadersWidth = 62;
             dgvSanPham.Size = new Size(872, 438);
             dgvSanPham.TabIndex = 10;
@@ -764,7 +807,7 @@
         private Button btnThoat;
         private Button btnHuy;
         private Button btnSua;
-        private Button button1;
+        private Button btnThem;
         private Label label11;
         private Label label12;
         private Label lblTenTK;

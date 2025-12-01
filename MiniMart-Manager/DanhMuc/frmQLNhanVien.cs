@@ -1,76 +1,125 @@
 ﻿using MiniMart_Manager.Classes;
 using System.Data;
 using Excel = Microsoft.Office.Interop.Excel;
+
 namespace MiniMart_Manager.DanhMuc
 {
     public partial class frmQLNhanVien : Form
     {
         ProcessDatabase dtBase = new ProcessDatabase();
+
+        int pageSize = 10;
+        int pageIndex = 1;
+        int totalPages = 0;
+        int totalRecords = 0;
+
         public frmQLNhanVien()
         {
             InitializeComponent();
         }
 
-        private void txtMaNV_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void frmQLNhanVien_Load(object sender, EventArgs e)
         {
             lblTenTK.Text = GlobalData.Quyen + ": " + GlobalData.TenDangNhap;
-            dgvNhanVien.DataSource = dtBase.ReadData("select * from NhanVien");
+
+            CalculatePagination();
+            LoadData();
+
             dgvNhanVien.Columns[0].HeaderText = "Mã Nhân Viên";
             dgvNhanVien.Columns[1].HeaderText = "Tên Nhân Viên";
             dgvNhanVien.Columns[2].HeaderText = "Chức Vụ";
             dgvNhanVien.Columns[3].HeaderText = "Giới Tính";
             dgvNhanVien.Columns[4].HeaderText = "Ngày Sinh";
-
-
-
+            btnSua.Enabled = btnXoa.Enabled = false;
+            DataTable slnv = dtBase.ReadData("Select COUNT(MaNhanVien) as SLNV From NhanVien");
+            lblSLNV.Text = "Số Lượng Nhân Viên: " + slnv.Rows[0]["SLNV"].ToString();
         }
-
-        private void dgvNhanVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        void CalculatePagination()
         {
+            string tenNV = txtTimTen.Text.Trim();
 
+            totalRecords = dtBase.CountNhanVien(tenNV);
+            totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+
+            if (totalPages == 0) pageIndex = 1;
         }
 
+        void LoadData()
+        {
+            int offset = (pageIndex - 1) * pageSize;
+            string tenNV = txtTimTen.Text.Trim();
+
+            DataTable dt = dtBase.ReadPagedNhanVien(offset, pageSize, tenNV);
+            dgvNhanVien.DataSource = dt;
+
+            UpdateUI();
+        }
+
+        void UpdateUI()
+        {
+            lblCurrentPage.Text = $"Trang {pageIndex} / {totalPages}";
+            btnFirstPage.Enabled = btnPrePage.Enabled = (pageIndex > 1);
+            btnNextPage.Enabled = btnLastPage.Enabled = (pageIndex < totalPages);
+        }
+
+        private void txtTimTen_TextChanged(object sender, EventArgs e)
+        {
+            pageIndex = 1;
+            CalculatePagination();
+            LoadData();
+        }
+
+        private void btnTrangDau_Click(object sender, EventArgs e)
+        {
+            pageIndex = 1;
+            LoadData();
+        }
+
+        private void btnTruoc_Click(object sender, EventArgs e)
+        {
+            if (pageIndex > 1)
+            {
+                pageIndex--;
+                LoadData();
+            }
+        }
+
+        private void btnSau_Click(object sender, EventArgs e)
+        {
+            if (pageIndex < totalPages)
+            {
+                pageIndex++;
+                LoadData();
+            }
+        }
+
+        private void btnTrangCuoi_Click(object sender, EventArgs e)
+        {
+            pageIndex = totalPages;
+            LoadData();
+        }
         private void dgvNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtMaNv.Text = dgvNhanVien.CurrentRow.Cells[0].Value.ToString();
-            txtHvT.Text = dgvNhanVien.CurrentRow.Cells[1].Value.ToString();
-            txtChucVu.Text = dgvNhanVien.CurrentRow.Cells[2].Value.ToString();
-            cbxGioiTinh.Text = dgvNhanVien.CurrentRow.Cells[3].Value.ToString();
-            dtpNgaySinh.Text = dgvNhanVien.CurrentRow.Cells[4].Value.ToString();
+            if (e.RowIndex >= 0 && e.RowIndex < dgvNhanVien.Rows.Count - 1)
+            {
+                txtMaNv.Text = dgvNhanVien.CurrentRow.Cells[0].Value.ToString();
+                txtHvT.Text = dgvNhanVien.CurrentRow.Cells[1].Value.ToString();
+                txtChucVu.Text = dgvNhanVien.CurrentRow.Cells[2].Value.ToString();
+                cbxGioiTinh.Text = dgvNhanVien.CurrentRow.Cells[3].Value.ToString();
+                dtpNgaySinh.Text = dgvNhanVien.CurrentRow.Cells[4].Value.ToString();
+            }
+            btnThem.Enabled = false;
+            btnXoa.Enabled = true;
+            btnSua.Enabled = true;
         }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (txtMaNv.Text.Trim() == "")
-            {
-                MessageBox.Show("Bạn phải nhập mã nhân viên!");
-                txtMaNv.Focus();
-                return;
-            }
-            if (txtHvT.Text.Trim() == "")
-            {
-                MessageBox.Show("Bạn phải nhập họ và tên nhân viên!");
-                txtHvT.Focus();
-                return;
-            }
-            if (txtChucVu.Text.Trim() == "")
-            {
-                MessageBox.Show("Bạn phải nhập chức vụ nhân viên!");
-                txtChucVu.Focus();
-                return;
+            if (txtMaNv.Text.Trim() == "") { MessageBox.Show("Bạn phải nhập mã nhân viên!"); txtMaNv.Focus(); return; }
+            if (txtHvT.Text.Trim() == "") { MessageBox.Show("Bạn phải nhập họ và tên nhân viên!"); txtHvT.Focus(); return; }
+            if (txtChucVu.Text.Trim() == "") { MessageBox.Show("Bạn phải nhập chức vụ nhân viên!"); txtChucVu.Focus(); return; }
+            if (cbxGioiTinh.Text.Trim() == "") { MessageBox.Show("Bạn phải chọn giới tính nhân viên!"); cbxGioiTinh.Focus(); return; }
 
-            }
-            if (cbxGioiTinh.Text.Trim() == "")
-            {
-                MessageBox.Show("Bạn phải chọn giới tính nhân viên!");
-                cbxGioiTinh.Focus();
-                return;
-            }
             DataTable dtNv = dtBase.ReadData("Select * From NhanVien Where MaNhanVien=N'" + txtMaNv.Text + "'");
             if (dtNv.Rows.Count > 0)
             {
@@ -78,12 +127,15 @@ namespace MiniMart_Manager.DanhMuc
                 txtMaNv.Focus();
                 return;
             }
+
             dtBase.UpdateData("Insert into NhanVien(MaNhanVien, TenNhanVien, ChucVu, GioiTinh, NgaySinh) values(N'" + txtMaNv.Text + "', N'" + txtHvT.Text + "', N'" + txtChucVu.Text + "', N'" + cbxGioiTinh.Text + "', N'" + dtpNgaySinh.Value.ToString("yyyy-MM-dd") + "')");
-            frmQLNhanVien_Load(sender, e);
+
+            CalculatePagination();
+            LoadData();
             ResetValues();
             MessageBox.Show("Thêm nhân viên thành công!");
-
         }
+
         void ResetValues()
         {
             txtMaNv.Text = "";
@@ -96,7 +148,7 @@ namespace MiniMart_Manager.DanhMuc
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (dgvNhanVien.Rows.Count == null)
+            if (dgvNhanVien.CurrentRow == null)
             {
                 MessageBox.Show("Bạn phải chọn phần tử để sửa");
                 return;
@@ -114,6 +166,7 @@ namespace MiniMart_Manager.DanhMuc
                 DataTable dtHd = dtBase.ReadData("Select * from HoaDon Where MaNhanVien=N'" + dgvNhanVien.CurrentRow.Cells[0].Value.ToString() + "'");
                 DataTable dtPn = dtBase.ReadData("Select * from PhieuNhap Where MaNhanVien=N'" + dgvNhanVien.CurrentRow.Cells[0].Value.ToString() + "'");
                 DataTable dtTk = dtBase.ReadData("Select * from TaiKhoan Where MaNhanVien=N'" + dgvNhanVien.CurrentRow.Cells[0].Value.ToString() + "'");
+
                 if (txtMaNv.Text != dgvNhanVien.CurrentRow.Cells[0].Value.ToString())
                 {
                     if (dtHd.Rows.Count > 0 || dtPn.Rows.Count > 0 || dtTk.Rows.Count > 0)
@@ -121,19 +174,15 @@ namespace MiniMart_Manager.DanhMuc
                         MessageBox.Show("Không thể sửa mã cho nhân viên này!");
                         k = false;
                     }
-
-
-
                 }
                 if (k)
                 {
-                    dtBase.UpdateData("Update NhanVien Set MaNhanVien=N'" + txtMaNv.Text + "', TenNhanVien=N'" + txtHvT.Text + "', ChucVu=N'" + txtChucVu.Text + "', GioiTinh=N'" + cbxGioiTinh.Text + "', NgaySinh=N'" + dtpNgaySinh.Value.ToString() + "' Where MaNhanVien=N'" + dgvNhanVien.CurrentRow.Cells[0].Value.ToString() + "'");
+                    dtBase.UpdateData("Update NhanVien Set MaNhanVien=N'" + txtMaNv.Text + "', TenNhanVien=N'" + txtHvT.Text + "', ChucVu=N'" + txtChucVu.Text + "', GioiTinh=N'" + cbxGioiTinh.Text + "', NgaySinh=N'" + dtpNgaySinh.Value.ToString("yyyy-MM-dd") + "' Where MaNhanVien=N'" + dgvNhanVien.CurrentRow.Cells[0].Value.ToString() + "'");
 
-                    frmQLNhanVien_Load(sender, e);
+                    LoadData();
                     ResetValues();
-                    MessageBox.Show("Cập nhật thàng công");
+                    MessageBox.Show("Cập nhật thành công");
                 }
-
             }
         }
 
@@ -157,9 +206,11 @@ namespace MiniMart_Manager.DanhMuc
                 else
                 {
                     dtBase.UpdateData("delete NhanVien where MaNhanVien=N'" + dgvNhanVien.CurrentRow.Cells[0].Value.ToString() + "';");
-                    frmQLNhanVien_Load(sender, e);
-                }
 
+                    CalculatePagination();
+                    LoadData();
+                    MessageBox.Show("Xóa thành công");
+                }
             }
         }
 
@@ -196,14 +247,12 @@ namespace MiniMart_Manager.DanhMuc
             int Hang = 5;
             for (int i = 0; i < dgvNhanVien.Rows.Count - 1; i++)
             {
-
                 tenTruong.Range["A" + Hang.ToString()].Value = dgvNhanVien.Rows[i].Cells[0].Value.ToString();
                 tenTruong.Range["B" + Hang.ToString()].Value = dgvNhanVien.Rows[i].Cells[1].Value.ToString();
                 tenTruong.Range["C" + Hang.ToString()].Value = dgvNhanVien.Rows[i].Cells[2].Value.ToString();
                 tenTruong.Range["D" + Hang.ToString()].Value = dgvNhanVien.Rows[i].Cells[3].Value.ToString();
                 tenTruong.Range["E" + Hang.ToString()].Value = dgvNhanVien.Rows[i].Cells[4].Value.ToString();
                 Hang++;
-
             }
             Excel.Range range = exSheet.Range[exSheet.Cells[4, 1], exSheet.Cells[int.Parse(R) - 2, 5]];
             range.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
@@ -219,12 +268,32 @@ namespace MiniMart_Manager.DanhMuc
                 MessageBox.Show("Xuất File Excel thành công");
             }
             exApp.Quit();
-
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtMaNV_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void dgvNhanVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        private void btnBoQua_Click(object sender, EventArgs e)
+        {
+            btnThem.Enabled = true;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
+            ResetValues();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -97,6 +97,9 @@ namespace MiniMart_Manager.DanhMuc
             cbxKhachHang.SelectedIndex = -1;
             TaoMoiHoaDon();
             txtMHD.Text = currentMaHD;
+            btnSua.Enabled = false;
+            btnHuy.Enabled = false;
+
 
         }
 
@@ -144,8 +147,12 @@ namespace MiniMart_Manager.DanhMuc
             txtSlBan.Text = "1";
             txtGiamGia.Text = "0";
             isLoading = false;
-
+            btnThem.Enabled = true;
+            btnSua.Enabled = false;
+            btnHuy.Enabled = false;
             TinhThanhTien();
+
+
         }
 
         private void dgvChiTietDH_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -168,6 +175,9 @@ namespace MiniMart_Manager.DanhMuc
             txtGiamGia.Text = dgvChiTietDH.CurrentRow.Cells["GiamGia"].Value.ToString();
             lblThanhTien.Text = dgvChiTietDH.CurrentRow.Cells["ThanhTien"].Value.ToString();
             isLoading = false;
+            btnHuy.Enabled = true;
+            btnSua.Enabled = true;
+            btnThem.Enabled = false;
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -629,5 +639,7 @@ namespace MiniMart_Manager.DanhMuc
         {
             TinhThanhTien();
         }
+
+
     }
 }

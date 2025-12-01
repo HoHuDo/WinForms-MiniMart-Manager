@@ -24,19 +24,15 @@ namespace MiniMart_Manager.DanhMuc
                 btnThemCTHD.Enabled = false;
                 btnSua.Enabled = false;
                 btnKH.Enabled = false;
+                btnBoQua.Enabled = false;
+                btnReset.Enabled = false;
             }
 
 
 
             lbluserName.Text = GlobalData.Quyen + ": " + GlobalData.TenDangNhap;
 
-            DataTable dtHoaDon = dtBase.ReadData("Select * From HoaDon");
-            dgvHoaDon.DataSource = dtHoaDon;
-            dgvHoaDon.Columns[0].HeaderText = "Mã Hóa Đơn";
-            dgvHoaDon.Columns[1].HeaderText = "Mã Khách Hàng";
-            dgvHoaDon.Columns[2].HeaderText = "Mã Nhân Viên";
-            dgvHoaDon.Columns[3].HeaderText = "Ngày Lập";
-            dgvHoaDon.Columns[4].HeaderText = "Tổng Tiền";
+
 
             cbxMaSP.DataSource = dtBase.ReadData("Select MaSanPham, TenSanPham From SanPham");
             cbxMaSP.DisplayMember = "TenSanPham";
@@ -49,6 +45,31 @@ namespace MiniMart_Manager.DanhMuc
             cbxMaNV.DataSource = dtBase.ReadData("Select MaNhanVien, TenNhanVien From NhanVien");
             cbxMaNV.DisplayMember = "TenNhanVien";
             cbxMaNV.ValueMember = "MaNhanVien";
+
+            btnSua.Enabled = false;
+            btnXoaCTHD.Enabled = false;
+            btnXoaHD.Enabled = false;
+            btnBoQua.Enabled = false;
+
+            int thang = dtpLoc.Value.Month;
+            int nam = dtpLoc.Value.Year;
+
+            DateTime start = new DateTime(nam, thang, 1);
+            DateTime end = start.AddMonths(1);
+
+            string sql = $@"
+                            SELECT *
+                            FROM HoaDon
+                            WHERE TRY_CONVERT(datetime, NgayLap, 120) >= '{start:yyyy-MM-dd}'
+                            AND TRY_CONVERT(datetime, NgayLap, 120) <  '{end:yyyy-MM-dd}'";
+
+            DataTable dtHoaDon = dtBase.ReadData(sql);
+            dgvHoaDon.DataSource = dtHoaDon;
+            dgvHoaDon.Columns[0].HeaderText = "Mã Hóa Đơn";
+            dgvHoaDon.Columns[1].HeaderText = "Mã Khách Hàng";
+            dgvHoaDon.Columns[2].HeaderText = "Mã Nhân Viên";
+            dgvHoaDon.Columns[3].HeaderText = "Ngày Lập";
+            dgvHoaDon.Columns[4].HeaderText = "Tổng Tiền";
 
             ResetValues();
         }
@@ -83,6 +104,11 @@ namespace MiniMart_Manager.DanhMuc
             else cbxMaNV.Text = "";
 
             isLoading = false;
+            btnThemHD.Enabled = false;
+            btnSua.Enabled = true;
+            btnXoaHD.Enabled = true;
+            btnBoQua.Enabled = true;
+            btnXoaCTHD.Enabled = false;
         }
 
         private void dgvChiTietHD_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -104,6 +130,9 @@ namespace MiniMart_Manager.DanhMuc
                 txtTongTien.Text = dgvHoaDon.CurrentRow.Cells[4].Value.ToString();
 
             isLoading = false;
+            btnSua.Enabled = true;
+            btnXoaCTHD.Enabled = true;
+            btnXoaHD.Enabled = false;
         }
 
         private void btnThemHD_Click(object sender, EventArgs e)
@@ -366,6 +395,10 @@ namespace MiniMart_Manager.DanhMuc
         {
             ResetValues();
             frmHoaDon_Load(sender, e);
+            btnSua.Enabled = false;
+            btnXoaHD.Enabled = false;
+            btnXoaCTHD.Enabled = false;
+            btnThemHD.Enabled = true;
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -399,12 +432,6 @@ namespace MiniMart_Manager.DanhMuc
                 {
                     sql += " AND MaHoaDon IN (SELECT MaHoaDon FROM ChiTietHoaDon WHERE MaSanPham = N'" + cbxMaSP.SelectedValue.ToString() + "')";
                     kq += "Sản Phẩm: '" + cbxMaSP.Text + "' \n";
-                }
-                if (chkTimTheoNgay.Checked)
-                {
-                    string ngayLap = dtpNgayNhap.Value.ToString("yyyy-MM-dd");
-                    sql += " AND CONVERT(DATE, NgayLap) = '" + ngayLap + "'";
-                    kq += "Ngày Lập: '" + ngayLap + "' \n";
                 }
 
                 DataTable dtResult = dtBase.ReadData(sql);
@@ -576,7 +603,7 @@ namespace MiniMart_Manager.DanhMuc
             txtThanhTien.Clear();
 
             txtMaHD.Focus();
-            if (chkTimTheoNgay != null) chkTimTheoNgay.Checked = false;
+
         }
 
         private void TuDongTinhToan(object sender, EventArgs e)
@@ -649,6 +676,29 @@ namespace MiniMart_Manager.DanhMuc
         private void txtMaHD_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dtpNgayNhap_ValueChanged(object sender, EventArgs e)
+        {
+            int thang = dtpLoc.Value.Month;
+            int nam = dtpLoc.Value.Year;
+
+            DateTime start = new DateTime(nam, thang, 1);
+            DateTime end = start.AddMonths(1);
+
+            string sql = $@"
+                            SELECT *
+                            FROM HoaDon
+                            WHERE TRY_CONVERT(datetime, NgayLap, 120) >= '{start:yyyy-MM-dd}'
+                            AND TRY_CONVERT(datetime, NgayLap, 120) <  '{end:yyyy-MM-dd}'";
+
+            DataTable dtHoaDon = dtBase.ReadData(sql);
+            dgvHoaDon.DataSource = dtHoaDon;
+            dgvHoaDon.Columns[0].HeaderText = "Mã Hóa Đơn";
+            dgvHoaDon.Columns[1].HeaderText = "Mã Khách Hàng";
+            dgvHoaDon.Columns[2].HeaderText = "Mã Nhân Viên";
+            dgvHoaDon.Columns[3].HeaderText = "Ngày Lập";
+            dgvHoaDon.Columns[4].HeaderText = "Tổng Tiền";
         }
     }
 }

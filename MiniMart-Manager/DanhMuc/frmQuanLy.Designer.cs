@@ -405,10 +405,10 @@
         private Panel pnlQuyen;
         private ToolStripMenuItem giaoDịchToolStripMenuItem;
         private ToolStripMenuItem mnuThoat;
+        private ToolStripMenuItem mnuBaoCao;
         private ToolStripMenuItem mnuGiaoDien;
         private ToolStripMenuItem tímToolStripMenuItem;
         private ToolStripMenuItem xanhToolStripMenuItem;
         private ToolStripMenuItem đỏToolStripMenuItem;
-        private ToolStripMenuItem mnuBaoCao;
     }
 }
