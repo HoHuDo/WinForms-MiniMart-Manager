@@ -632,5 +632,10 @@ namespace MiniMart_Manager.DanhMuc
             dgvPhieuNhap.Columns[3].HeaderText = "Ngày Nhập";
             dgvPhieuNhap.Columns[4].HeaderText = "Tổng Tiền";
         }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
