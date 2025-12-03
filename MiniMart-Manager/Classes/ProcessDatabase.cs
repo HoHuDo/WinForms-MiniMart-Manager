@@ -250,11 +250,11 @@ namespace MiniMart_Manager.Classes
         {
             DataTable dt = new DataTable();
             string dataQuery = @"
-        SELECT * FROM NhaCungCap 
-        WHERE TenNhaCungCap LIKE @Ten
-        ORDER BY MaNhaCungCap
-        OFFSET @Offset ROWS 
-        FETCH NEXT @PageSize ROWS ONLY";
+                    SELECT * FROM NhaCungCap 
+                    WHERE TenNhaCungCap LIKE @Ten
+                    ORDER BY MaNhaCungCap
+                    OFFSET @Offset ROWS 
+                    FETCH NEXT @PageSize ROWS ONLY";
 
             try
             {

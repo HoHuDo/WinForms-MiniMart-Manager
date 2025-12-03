@@ -175,6 +175,13 @@ namespace MiniMart_Manager.DanhMuc
                     txtMaPN.Focus();
                     return;
                 }
+                DataTable dtBan = dtBase.ReadData("Select GiaBan from SanPham where MaSanPham ='" + cbxMaSP.SelectedValue.ToString() + "'");
+                if (double.Parse(txtDonGia.Text.Trim()) > double.Parse(dtBan.Rows[0][0].ToString()))
+                {
+                    MessageBox.Show("Đơn giá nhập không được lớn hơn giá bán hiện tại của sản phẩm!");
+                    txtDonGia.Focus();
+                    return;
+                }
                 if (cbxMaSP.SelectedIndex == -1 && txtSL.Text == "" && txtDonGia.Text == "")
                 {
                     dtBase.UpdateData("Update PhieuNhap Set MaPhieuNhap=N'"
@@ -498,6 +505,13 @@ namespace MiniMart_Manager.DanhMuc
             {
                 MessageBox.Show("Phiếu nhập không tồn tại, bạn phải tạo phiếu nhập trước!");
                 txtMaPN.Focus();
+                return;
+            }
+            DataTable dtBan = dtBase.ReadData("Select GiaBan from SanPham where MaSanPham ='" + cbxMaSP.SelectedValue.ToString() + "'");
+            if (double.Parse(txtDonGia.Text.Trim()) > double.Parse(dtBan.Rows[0][0].ToString()))
+            {
+                MessageBox.Show("Đơn giá nhập không được lớn hơn giá bán hiện tại của sản phẩm!");
+                txtDonGia.Focus();
                 return;
             }
             dtBase.UpdateData("Insert into ChiTietPhieuNhap(MaPhieuNhap, MaSanPham, SoLuongNhap, DonGiaNhap, ThanhTien) values(N'"
